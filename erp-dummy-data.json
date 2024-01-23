@@ -1,0 +1,614 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "givenName": "John",
+      "surname": "Doe",
+      "identityNumber": "123456789",
+      "birthDate": "1990-01-15",
+      "email": "john.doe@example.com",
+      "phones": [
+        {
+          "id": 1,
+          "areaCode": "123",
+          "number": "4567890"
+        }
+      ],
+      "contracts": [
+        {
+          "id": 1,
+          "projectId": 1,
+          "courseId": 1,
+          "beginDate": "2023-01-01",
+          "endDate": "2023-12-31",
+          "informDeadlineOfFirstRecess": "2023-06-30",
+          "informDeadlineOfSecondRecess": "2023-09-30",
+          "reports": [
+            {
+              "id": 1,
+              "deliveryDate": "2023-08-15",
+              "description": "Report for Project A"
+            }
+          ],
+          "recesses": [
+            {
+              "id": 1,
+              "beginDate": "2023-07-01",
+              "endDate": "2023-07-15"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "projectId": 2,
+          "courseId": 2,
+          "beginDate": "2023-02-15",
+          "endDate": "2023-11-30",
+          "informDeadlineOfFirstRecess": "2023-07-31",
+          "informDeadlineOfSecondRecess": "2023-10-31",
+          "reports": [],
+          "recesses": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "givenName": "Jane",
+      "surname": "Smith",
+      "identityNumber": "987654321",
+      "birthDate": "1988-05-20",
+      "email": "jane.smith@example.com",
+      "phones": [
+        {
+          "id": 2,
+          "areaCode": "987",
+          "number": "6543210"
+        }
+      ],
+      "contracts": [
+        {
+          "id": 3,
+          "projectId": 1,
+          "courseId": 2,
+          "beginDate": "2023-03-10",
+          "endDate": "2023-10-15",
+          "informDeadlineOfFirstRecess": "2023-08-31",
+          "informDeadlineOfSecondRecess": "2023-09-30",
+          "reports": [],
+          "recesses": []
+        },
+        {
+          "id": 4,
+          "projectId": 2,
+          "courseId": 1,
+          "beginDate": "2023-04-20",
+          "endDate": "2023-12-31",
+          "informDeadlineOfFirstRecess": "2023-09-15",
+          "informDeadlineOfSecondRecess": "2023-11-15",
+          "reports": [],
+          "recesses": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "givenName": "Jack",
+      "surname": "Black",
+      "identityNumber": "123123123",
+      "birthDate": "1995-12-31",
+      "email": "jack.black@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 4,
+      "givenName": "Jill",
+      "surname": "White",
+      "identityNumber": "321321321",
+      "birthDate": "1993-06-30",
+      "email": "jill.white@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 5,
+      "givenName": "Jim",
+      "surname": "Green",
+      "identityNumber": "456456456",
+      "birthDate": "1991-03-15",
+      "email": "jim.green@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 6,
+      "givenName": "Jenny",
+      "surname": "Brown",
+      "identityNumber": "654654654",
+      "birthDate": "1994-09-15",
+      "email": "jenny.brown@exxample.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 7,
+      "givenName": "Joe",
+      "surname": "Grey",
+      "identityNumber": "789789789",
+      "birthDate": "1992-07-31",
+      "email": "joe.grey@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 8,
+      "givenName": "Jessica",
+      "surname": "Blue",
+      "identityNumber": "987987987",
+      "birthDate": "1996-11-30",
+      "email": "jessica.blue@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 9,
+      "givenName": "James",
+      "surname": "Red",
+      "identityNumber": "159159159",
+      "birthDate": "1997-02-28",
+      "email": "james.red@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 10,
+      "givenName": "Julia",
+      "surname": "Purple",
+      "identityNumber": "951951951",
+      "birthDate": "1998-10-31",
+      "email": "julia.purple@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 11,
+      "givenName": "Jason",
+      "surname": "Yellow",
+      "identityNumber": "753753753",
+      "birthDate": "1999-04-30",
+      "email": "jason.yellow@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 12,
+      "givenName": "Jasmine",
+      "surname": "Orange",
+      "identityNumber": "357357357",
+      "birthDate": "2000-08-31",
+      "email": "jasmine.orange@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 13,
+      "givenName": "Justin",
+      "surname": "Cyan",
+      "identityNumber": "258258258",
+      "birthDate": "2001-01-31",
+      "email": "justin.cyan@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 14,
+      "givenName": "Jade",
+      "surname": "Magenta",
+      "identityNumber": "852852852",
+      "birthDate": "2002-05-31",
+      "email": "jade.magenta@example.net",
+      "phones": [],
+      "contracts": []
+    },
+    {
+      "id": 15,
+      "givenName": "Jasper",
+      "surname": "Violet",
+      "identityNumber": "456456456",
+      "birthDate": "2003-09-30",
+      "email": "jasper.violet@example.net",
+      "phones": [],
+      "contracts": []
+    }
+  ],
+  "contracts": [
+    {
+      "id": 1,
+      "projectId": 1,
+      "courseId": 1,
+      "employeeId": 1,
+      "beginDate": "2023-01-01",
+      "endDate": "2023-12-31",
+      "informDeadlineOfFirstRecess": "2023-06-30",
+      "informDeadlineOfSecondRecess": "2023-09-30",
+      "employee": {
+        "id": 1,
+        "givenName": "John",
+        "surname": "Doe",
+        "identityNumber": "123456789",
+        "birthDate": "1990-01-15",
+        "email": "john.doe@example.com",
+        "phones": [
+          {
+            "id": 1,
+            "areaCode": "123",
+            "number": "4567890"
+          },
+          {
+            "id": 2,
+            "areaCode": "987",
+            "number": "6543210"
+          }
+        ]
+      },
+      "reports": [
+        {
+          "id": 1,
+          "deliveryDate": "2023-08-15",
+          "description": "Report for Project A"
+        }
+      ],
+      "recesses": [
+        {
+          "id": 1,
+          "beginDate": "2023-07-01",
+          "endDate": "2023-07-15"
+        }
+      ],
+      "project": {
+        "id": 1,
+        "code": "P001",
+        "name": "Project A",
+        "beginDate": "2023-01-01",
+        "endDate": "2023-12-31"
+      }
+    },
+    {
+      "id": 2,
+      "projectId": 2,
+      "courseId": 2,
+      "employeeId": 2,
+      "beginDate": "2023-02-15",
+      "endDate": "2023-11-30",
+      "informDeadlineOfFirstRecess": "2023-07-31",
+      "informDeadlineOfSecondRecess": "2023-10-31",
+      "employee": {
+        "id": 2,
+        "givenName": "Jane",
+        "surname": "Smith",
+        "identityNumber": "987654321",
+        "birthDate": "1988-05-20",
+        "email": "jane.smith@example.com",
+        "phones": [
+          {
+            "id": 1,
+            "areaCode": "123",
+            "number": "4567890"
+          },
+          {
+            "id": 2,
+            "areaCode": "987",
+            "number": "6543210"
+          }
+        ]
+      },
+      "reports": [],
+      "recesses": [],
+      "project": {
+        "id": 2,
+        "code": "P002",
+        "name": "Project B",
+        "beginDate": "2023-02-01",
+        "endDate": "2023-11-30"
+      }
+    },
+    {
+      "project": {
+        "id": 1,
+        "code": "P001",
+        "name": "Project A",
+        "beginDate": "2023-01-01",
+        "endDate": "2023-12-31",
+        "contracts": [
+          {
+            "id": 1,
+            "employeeId": 1,
+            "beginDate": "2023-01-01",
+            "endDate": "2023-12-31",
+            "reports": [
+              {
+                "id": 1,
+                "deliveryDate": "2023-08-15",
+                "description": "Report for Project A"
+              }
+            ],
+            "recesses": [
+              {
+                "id": 1,
+                "beginDate": "2023-07-01",
+                "endDate": "2023-07-15"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "employeeId": 2,
+            "beginDate": "2023-03-10",
+            "endDate": "2023-10-15",
+            "reports": [],
+            "recesses": []
+          }
+        ]
+      },
+      "course": {
+        "id": 25,
+        "name": "Course B",
+        "contracts": []
+      },
+      "employee": {
+        "id": 3,
+        "givenName": "Jack",
+        "surname": "Black",
+        "identityNumber": "123123123",
+        "birthDate": "1995-12-31",
+        "email": "jack.black@example.net",
+        "phones": [],
+        "contracts": []
+      },
+      "beginDate": "2023-09-08T03:00:00.000Z",
+      "endDate": "2023-09-30T03:00:00.000Z",
+      "informDeadlineOfFirstRecess": "2023-09-14T03:00:00.000Z",
+      "informDeadlineOfSecondRecess": "2023-09-14T03:00:00.000Z",
+      "id": 3
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "code": "P001",
+      "name": "Project A",
+      "beginDate": "2023-01-01",
+      "endDate": "2023-12-31",
+      "contracts": [
+        {
+          "id": 1,
+          "employeeId": 1,
+          "beginDate": "2023-01-01",
+          "endDate": "2023-12-31",
+          "reports": [
+            {
+              "id": 1,
+              "deliveryDate": "2023-08-15",
+              "description": "Report for Project A"
+            }
+          ],
+          "recesses": [
+            {
+              "id": 1,
+              "beginDate": "2023-07-01",
+              "endDate": "2023-07-15"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "employeeId": 2,
+          "beginDate": "2023-03-10",
+          "endDate": "2023-10-15",
+          "reports": [],
+          "recesses": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "code": "P002",
+      "name": "Project B",
+      "beginDate": "2023-02-01",
+      "endDate": "2023-11-30",
+      "contracts": [
+        {
+          "id": 2,
+          "employeeId": 1,
+          "beginDate": "2023-02-15",
+          "endDate": "2023-11-30",
+          "reports": [],
+          "recesses": []
+        },
+        {
+          "id": 4,
+          "employeeId": 2,
+          "beginDate": "2023-04-20",
+          "endDate": "2023-12-31",
+          "reports": [],
+          "recesses": []
+        }
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "name": "Course X",
+      "contracts": [
+        {
+          "id": 1,
+          "employeeId": 1
+        },
+        {
+          "id": 4,
+          "employeeId": 2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Course Y",
+      "contracts": [
+        {
+          "id": 2,
+          "employeeId": 2
+        },
+        {
+          "id": 3,
+          "employeeId": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Course Z",
+      "contracts": []
+    },
+    {
+      "id": 4,
+      "name": "Course W",
+      "contracts": []
+    },
+    {
+      "id": 5,
+      "name": "Course V",
+      "contracts": []
+    },
+    {
+      "id": 6,
+      "name": "Course U",
+      "contracts": []
+    },
+    {
+      "id": 7,
+      "name": "Course T",
+      "contracts": []
+    },
+    {
+      "id": 8,
+      "name": "Course S",
+      "contracts": []
+    },
+    {
+      "id": 9,
+      "name": "Course R",
+      "contracts": []
+    },
+    {
+      "id": 10,
+      "name": "Course Q",
+      "contracts": []
+    },
+    {
+      "id": 11,
+      "name": "Course P",
+      "contracts": []
+    },
+    {
+      "id": 12,
+      "name": "Course O",
+      "contracts": []
+    },
+    {
+      "id": 13,
+      "name": "Course N",
+      "contracts": []
+    },
+    {
+      "id": 14,
+      "name": "Course M",
+      "contracts": []
+    },
+    {
+      "id": 15,
+      "name": "Course L",
+      "contracts": []
+    },
+    {
+      "id": 16,
+      "name": "Course K",
+      "contracts": []
+    },
+    {
+      "id": 17,
+      "name": "Course J",
+      "contracts": []
+    },
+    {
+      "id": 18,
+      "name": "Course I",
+      "contracts": []
+    },
+    {
+      "id": 19,
+      "name": "Course H",
+      "contracts": []
+    },
+    {
+      "id": 20,
+      "name": "Course G",
+      "contracts": []
+    },
+    {
+      "id": 21,
+      "name": "Course F",
+      "contracts": []
+    },
+    {
+      "id": 22,
+      "name": "Course E",
+      "contracts": []
+    },
+    {
+      "id": 23,
+      "name": "Course D",
+      "contracts": []
+    },
+    {
+      "id": 24,
+      "name": "Course C",
+      "contracts": []
+    },
+    {
+      "id": 25,
+      "name": "Course B",
+      "contracts": []
+    }
+  ],
+  "reports": [
+    {
+      "id": 1,
+      "contractId": 1,
+      "deliveryDate": "2023-08-15",
+      "description": "Report for Project A"
+    }
+  ],
+  "recesses": [
+    {
+      "id": 1,
+      "contractId": 1,
+      "beginDate": "2023-07-01",
+      "endDate": "2023-07-15"
+    }
+  ],
+  "phones": [
+    {
+      "id": 1,
+      "employeeId": 1,
+      "areaCode": "123",
+      "number": "4567890"
+    },
+    {
+      "id": 2,
+      "employeeId": 2,
+      "areaCode": "987",
+      "number": "6543210"
+    }
+  ]
+}
