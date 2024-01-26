@@ -1,5 +1,4 @@
-import { DecimalPipe } from '@angular/common';
-import { Injectable, PipeTransform } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
 
 import { Employee } from './employee';
@@ -32,7 +31,7 @@ function sort(employees: Employee[], column: SortColumn, direction: string): Emp
   }
 }
 
-function matches(employee: Employee, term: string, pipe: PipeTransform) {
+function matches(employee: Employee, term: string) {
   return (
     employee.givenName.toLowerCase().includes(term.toLowerCase()) ||
     employee.surname.toLowerCase().includes(term.toLowerCase()) ||
@@ -58,7 +57,7 @@ export class EmployeeService {
     sortDirection: '',
   };
 
-  constructor(private pipe: DecimalPipe) {
+  constructor() {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
@@ -122,11 +121,15 @@ export class EmployeeService {
     let employees = sort(EMPLOYEES, sortColumn, sortDirection);
 
     // 2. filter
-    employees = employees.filter((employee) => matches(employee, searchTerm, this.pipe));
+    employees = employees.filter((employee) => matches(employee, searchTerm));
     const total = employees.length;
 
     // 3. paginate
     employees = employees.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
     return of({ employees, total });
+  }
+
+  public getEmployee(id: number): Observable<Employee | undefined> {
+    return of(EMPLOYEES.find((employee) => employee.id === id));
   }
 }

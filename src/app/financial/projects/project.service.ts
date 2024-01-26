@@ -1,6 +1,6 @@
-import { DecimalPipe } from '@angular/common';
-import { Injectable, PipeTransform } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
+
 import { Project } from './project';
 import { SortColumn, SortDirection } from './project-sortable-header.directive';
 import { PROJECTS } from './projects';
@@ -31,7 +31,7 @@ function sort(projects: Project[], column: SortColumn, direction: string): Proje
   }
 }
 
-function matches(project: Project, term: string, pipe: PipeTransform) {
+function matches(project: Project, term: string) {
   return project.name.toLowerCase().includes(term.toLowerCase()) || project.grantor.toLowerCase().includes(term.toLowerCase()) || project.code.toLowerCase().includes(term.toLowerCase());
 }
 
@@ -52,7 +52,7 @@ export class ProjectService {
     sortDirection: '',
   };
 
-  constructor(private pipe: DecimalPipe) {
+  constructor() {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
@@ -116,7 +116,7 @@ export class ProjectService {
     let projects = sort(PROJECTS, sortColumn, sortDirection);
 
     // 2. filter
-    projects = projects.filter((project) => matches(project, searchTerm, this.pipe));
+    projects = projects.filter((project) => matches(project, searchTerm));
     const total = projects.length;
 
     // 3. paginate

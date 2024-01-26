@@ -1,6 +1,6 @@
-import { DecimalPipe } from '@angular/common';
-import { Injectable, PipeTransform } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
+
 import { Grantor } from './grantor';
 import { SortColumn, SortDirection } from './grantor-sortable-header.directive';
 import { GRANTORS } from './grantors';
@@ -31,7 +31,7 @@ function sort(grantors: Grantor[], column: SortColumn, direction: string): Grant
   }
 }
 
-function matches(grantor: Grantor, term: string, pipe: PipeTransform) {
+function matches(grantor: Grantor, term: string) {
   return grantor.name.toLowerCase().includes(term.toLowerCase());
 }
 
@@ -52,7 +52,7 @@ export class GrantorService {
     sortDirection: '',
   };
 
-  constructor(private pipe: DecimalPipe) {
+  constructor() {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
@@ -116,7 +116,7 @@ export class GrantorService {
     let grantors = sort(GRANTORS, sortColumn, sortDirection);
 
     // 2. filter
-    grantors = grantors.filter((grantor) => matches(grantor, searchTerm, this.pipe));
+    grantors = grantors.filter((grantor) => matches(grantor, searchTerm));
     const total = grantors.length;
 
     // 3. paginate

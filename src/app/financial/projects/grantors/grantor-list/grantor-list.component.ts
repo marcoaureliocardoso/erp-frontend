@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, DecimalPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ import { GrantorService } from '../grantor.service';
   imports: [RouterModule, AsyncPipe, DatePipe, FormsModule, NgbHighlight, NgbPaginationModule, GrantorSortableHeaderDirective, NgbTooltipModule],
   templateUrl: './grantor-list.component.html',
   styleUrl: './grantor-list.component.css',
-  providers: [GrantorService, DecimalPipe],
+  providers: [GrantorService],
 })
 export class GrantorListComponent {
   grantors$: Observable<Grantor[]>;

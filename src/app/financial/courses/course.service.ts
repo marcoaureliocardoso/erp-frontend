@@ -1,5 +1,4 @@
-import { DecimalPipe } from '@angular/common';
-import { Injectable, PipeTransform } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
 
 import { Course } from './course';
@@ -32,7 +31,7 @@ function sort(courses: Course[], column: SortColumn, direction: string): Course[
   }
 }
 
-function matches(course: Course, term: string, pipe: PipeTransform) {
+function matches(course: Course, term: string) {
   return course.name.toLowerCase().includes(term.toLowerCase());
 }
 
@@ -53,7 +52,7 @@ export class CourseService {
     sortDirection: '',
   };
 
-  constructor(private pipe: DecimalPipe) {
+  constructor() {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
@@ -117,7 +116,7 @@ export class CourseService {
     let courses = sort(COURSES, sortColumn, sortDirection);
 
     // 2. filter
-    courses = courses.filter((course) => matches(course, searchTerm, this.pipe));
+    courses = courses.filter((course) => matches(course, searchTerm));
     const total = courses.length;
 
     // 3. paginate

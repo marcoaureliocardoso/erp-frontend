@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, DecimalPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ import { ProjectService } from '../project.service';
   imports: [RouterModule, AsyncPipe, DatePipe, FormsModule, NgbHighlight, NgbPaginationModule, ProjectSortableHeaderDirective, NgbTooltipModule],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.css',
-  providers: [ProjectService, DecimalPipe],
+  providers: [ProjectService],
 })
 export class ProjectListComponent {
   projects$: Observable<Project[]>;

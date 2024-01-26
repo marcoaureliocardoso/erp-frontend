@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, DecimalPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ import { CourseService } from '../course.service';
   imports: [RouterModule, AsyncPipe, DatePipe, FormsModule, NgbHighlight, NgbPaginationModule, CourseSortableHeaderDirective, NgbTooltipModule],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.css',
-  providers: [CourseService, DecimalPipe],
+  providers: [CourseService],
 })
 export class CourseListComponent {
   courses$: Observable<Course[]>;

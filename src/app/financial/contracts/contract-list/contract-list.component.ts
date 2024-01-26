@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, DecimalPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -13,10 +13,10 @@ import { ShortPipe } from '../../../shared/short.pipe';
 @Component({
   selector: 'app-contract-list',
   standalone: true,
-  imports: [RouterModule, DecimalPipe, DatePipe, FormsModule, AsyncPipe, NgbHighlight, ContractSortableHeaderDirective, NgbPaginationModule, ShortPipe, NgbTooltipModule],
+  imports: [RouterModule, DatePipe, FormsModule, AsyncPipe, NgbHighlight, ContractSortableHeaderDirective, NgbPaginationModule, ShortPipe, NgbTooltipModule],
   templateUrl: './contract-list.component.html',
   styleUrl: './contract-list.component.css',
-  providers: [ContractService, DecimalPipe],
+  providers: [ContractService],
 })
 export class ContractListComponent {
   contracts$: Observable<Contract[]>;

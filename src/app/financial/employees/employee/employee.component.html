@@ -1,1 +1,64 @@
-<p>employee works!</p>
+@if (employee) {
+<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+  <ol class="breadcrumb border-top border-bottom bg-light ps-1">
+    <li class="breadcrumb-item"><a routerLink="">Início</a></li>
+    <li class="breadcrumb-item">Financeiro</li>
+    <li class="breadcrumb-item"><a routerLink="..">Colaboradores</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ employee.givenName }} {{ employee.surname }}</li>
+  </ol>
+</nav>
+<div class="row justify-content-center">
+  <div class="col-xl-10 col-xxl-8">
+    <h4>Colaborador: {{ employee.givenName }} {{ employee.surname }}</h4>
+
+    <div class="card mb-3">
+      <div class="card-header" data-bs-toggle="collapse" href="#employeePersonalDataContent" role="button" aria-expanded="true" aria-controls="employeePersonalDataContent">
+        <h4 class="mb-0">Dados Pessoais</h4>
+      </div>
+      <div class="collapse show" id="employeePersonalDataContent">
+        <div class="card-body">
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Nome:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ employee.givenName }} {{ employee.surname }}</div>
+          </div>
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>CPF:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ employee.identityNumber | cpfFormat }}</div>
+          </div>
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Data de Nascimento:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ employee.birthDate | date : "dd/MM/yyy" }}</div>
+          </div>
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Número do Documento:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ employee.identityNumber | cpfFormat }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-header collapsed" data-bs-toggle="collapse" href="#employeeContactDataContent" role="button" aria-expanded="false" aria-controls="employeeContactDataContent">
+        <h4 class="mb-0">Contato<!--  e Endereço --></h4>
+      </div>
+      <div class="collapse show" id="employeeContactDataContent">
+        <div class="card-body">
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Email:</strong></div>
+            <div class="col-sm-8 col-lg-9">
+              <a href="mailto:{{ employee.email }}">{{ employee.email }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a routerLink=".." class="btn btn-secondary">Lista de Colaboradores</a>
+    <br /><br />
+  </div>
+</div>
+
+} @else {
+<div class="col-12 text-danger text-center">Colaborador não encontrado!</div>
+<a routerLink=".." class="btn btn-secondary">Lista de Colaboradores</a>
+}

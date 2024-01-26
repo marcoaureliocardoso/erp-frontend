@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, DecimalPipe, NgClass } from '@angular/common';
+import { AsyncPipe, DatePipe, NgClass } from '@angular/common';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ import { ContractEventService } from '../contract-event.service';
   imports: [RouterModule, AsyncPipe, DatePipe, FormsModule, NgbHighlight, NgbPaginationModule, ContractEventSortableHeaderDirective, NgClass, NgbTooltipModule],
   templateUrl: './contract-event-list.component.html',
   styleUrl: './contract-event-list.component.css',
-  providers: [ContractEventService, DecimalPipe],
+  providers: [ContractEventService],
 })
 export class ContractEventListComponent implements OnInit {
   contractEvents$: Observable<ContractEvent[]>;

@@ -1,5 +1,4 @@
-import { DecimalPipe } from '@angular/common';
-import { Injectable, PipeTransform } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
 
 import { ContractEvent } from './contract-event';
@@ -32,7 +31,7 @@ function sort(contractEvents: ContractEvent[], column: SortColumn, direction: st
   }
 }
 
-function matches(contractEvent: ContractEvent, term: string, pipe: PipeTransform) {
+function matches(contractEvent: ContractEvent, term: string) {
   return (
     contractEvent.employeeGivenName.toLowerCase().includes(term.toLowerCase()) ||
     contractEvent.employeeSurname.toLowerCase().includes(term.toLowerCase()) ||
@@ -57,7 +56,7 @@ export class ContractEventService {
     sortDirection: '',
   };
 
-  constructor(private pipe: DecimalPipe) {
+  constructor() {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
@@ -121,7 +120,7 @@ export class ContractEventService {
     let contractEvents = sort(CONTRACT_EVENTS, sortColumn, sortDirection);
 
     // 2. filter
-    contractEvents = contractEvents.filter((contractEvent) => matches(contractEvent, searchTerm, this.pipe));
+    contractEvents = contractEvents.filter((contractEvent) => matches(contractEvent, searchTerm));
     const total = contractEvents.length;
 
     // 3. paginate

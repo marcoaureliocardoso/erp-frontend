@@ -1,1 +1,66 @@
-<p>contract works!</p>
+@if (contract) {
+<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+  <ol class="breadcrumb border-top border-bottom bg-light ps-1">
+    <li class="breadcrumb-item"><a routerLink="">Início</a></li>
+    <li class="breadcrumb-item">Financeiro</li>
+    <li class="breadcrumb-item"><a routerLink="..">Termos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ contract.employeeGivenName }} {{ contract.employeeSurname }}</li>
+  </ol>
+</nav>
+<div class="row justify-content-center">
+  <div class="col-xl-10 col-xxl-8">
+    <h4>Termo: {{ contract.projectName }} - {{ contract.employeeGivenName }} {{ contract.employeeSurname }}</h4>
+
+    <div class="card mb-3">
+      <div class="card-header" data-bs-toggle="collapse" href="#contractPersonalDataContent" role="button" aria-expanded="true" aria-controls="contractPersonalDataContent">
+        <h4 class="mb-0">Dados do Colaborador</h4>
+      </div>
+      <div class="collapse show" id="contractPersonalDataContent">
+        <div class="card-body">
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Nome:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ contract.employeeGivenName }} {{ contract.employeeSurname }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-header" data-bs-toggle="collapse" href="#contractDataContent" role="button" aria-expanded="true" aria-controls="contractDataContent">
+        <h4 class="mb-0">Dados do Vínculo</h4>
+      </div>
+      <div class="collapse show" id="contractDataContent">
+        <div class="card-body">
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Fomentador:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ contract.grantorName }}</div>
+          </div>
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Projeto:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ contract.projectName }}</div>
+          </div>
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Curso:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ contract.courseName }}</div>
+          </div>
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Início do Contrato:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ contract.beginDate | date : "dd/MM/yyy" }}</div>
+          </div>
+          <div class="mb-2 row">
+            <div class="col-sm-4 col-lg-3"><strong>Término do Contrato:</strong></div>
+            <div class="col-sm-8 col-lg-9">{{ contract.endDate | date : "dd/MM/yyy" }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a routerLink=".." class="btn btn-secondary">Lista de Termos</a>
+    <br /><br />
+  </div>
+</div>
+
+} @else {
+<div class="col-12 text-danger text-center">Colaborador não encontrado!</div>
+<a routerLink=".." class="btn btn-secondary">Lista de Termos</a>
+}
