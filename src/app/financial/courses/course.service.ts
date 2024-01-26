@@ -123,4 +123,20 @@ export class CourseService {
     courses = courses.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
     return of({ courses, total });
   }
+
+  public getCourse(id: number): Observable<Course | null> {
+    return of(COURSES.find((course) => course.id === id) || null);
+  }
+
+  public create(course: Course): Observable<Course> {
+    course.id = COURSES.length + 1;
+    COURSES.push(course);
+    return of(course);
+  }
+
+  public update(course: Course): Observable<Course> {
+    const index = COURSES.findIndex((c) => c.id === course.id);
+    COURSES[index] = course;
+    return of(course);
+  }
 }

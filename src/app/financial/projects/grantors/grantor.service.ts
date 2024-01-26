@@ -123,4 +123,20 @@ export class GrantorService {
     grantors = grantors.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
     return of({ grantors, total });
   }
+
+  getGrantor(id: number): Observable<Grantor | null> {
+    return of(GRANTORS.find((c) => c.id === id) || null);
+  }
+
+  public create(grantor: Grantor): Observable<Grantor> {
+    grantor.id = GRANTORS.length + 1;
+    GRANTORS.push(grantor);
+    return of(grantor);
+  }
+
+  public update(grantor: Grantor): Observable<Grantor> {
+    const index = GRANTORS.findIndex((c) => c.id === grantor.id);
+    GRANTORS[index] = grantor;
+    return of(grantor);
+  }
 }
