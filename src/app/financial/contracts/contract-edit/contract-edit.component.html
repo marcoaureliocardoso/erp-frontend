@@ -1,1 +1,130 @@
-<p>contract-edit works!</p>
+@if (contract) {
+<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+  <ol class="breadcrumb border-top border-bottom bg-light ps-1">
+    <li class="breadcrumb-item"><a routerLink="">Início</a></li>
+    <li class="breadcrumb-item">Financeiro</li>
+    <li class="breadcrumb-item"><a routerLink="../..">Termos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ editMode ? "Editar: Contrato" : "Cadastrar Novo Termo" }}</li>
+  </ol>
+</nav>
+<div class="row justify-content-center">
+  <div class="col-xl-10 col-xxl-8">
+    <form (ngSubmit)="submit(frm)" #frm="ngForm">
+      <fieldset>
+        <legend>Dados de Identificação</legend>
+        <div class="row g-3 mb-3">
+          <div class="col-12">
+            <label for="inputGrantor1" class="form-label">Fomentador*</label>
+            <select id="inputGrantor1" name="grantor" class="form-select" [ngClass]="grantorField.invalid && grantorField.touched ? 'is-invalid' : ''" ngModel required #grantorField="ngModel">
+              <option value="" disabled selected>Selecione um fomentador</option>
+              @for (grantor of grantors; track grantor.id) {
+              <option [value]="grantor.id">{{ grantor.name }}</option>
+              }
+            </select>
+            @if (grantorField.invalid && grantorField.touched) {
+            <div class="form-text text-danger">O Fomentador é obrigatório</div>
+            }
+          </div>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-12">
+            <label for="inputProject1" class="form-label">Projeto*</label>
+            <select id="inputProject1" name="project" class="form-select" [ngClass]="projectField.invalid && projectField.touched ? 'is-invalid' : ''" ngModel required #projectField="ngModel">
+              <option value="" disabled selected>Selecione um projeto</option>
+              @for (project of projects; track project.id) {
+              <option [value]="project.id">{{ project.name }}</option>
+              }
+            </select>
+            @if (projectField.invalid && projectField.touched) {
+            <div class="form-text text-danger">O Projeto é obrigatório</div>
+            }
+          </div>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-12">
+            <label for="inputCourse1" class="form-label">Curso*</label>
+            <select id="inputCourse1" name="course" class="form-select" [ngClass]="courseField.invalid && courseField.touched ? 'is-invalid' : ''" ngModel required #courseField="ngModel">
+              <option value="" disabled selected>Selecione um curso</option>
+              @for (course of courses; track course.id) {
+              <option [value]="course.id">{{ course.name }}</option>
+              }
+            </select>
+            @if (courseField.invalid && courseField.touched) {
+            <div class="form-text text-danger">O Curso é obrigatório</div>
+            }
+          </div>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-12">
+            <label for="inputEmployee1" class="form-label">Colaborador*</label>
+            <select id="inputEmployee1" name="employee" class="form-select" [ngClass]="employeeField.invalid && employeeField.touched ? 'is-invalid' : ''" ngModel required #employeeField="ngModel">
+              <option value="" disabled selected>Selecione um colaborador</option>
+              @for (employee of employees; track employee.id) {
+              <option [value]="employee.id">{{ employee.givenName + " " + employee.surname }}</option>
+              }
+            </select>
+            @if (employeeField.invalid && employeeField.touched) {
+            <div class="form-text text-danger">O Colaborador é obrigatório</div>
+            }
+          </div>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-12">
+            <label for="inputBegin1" class="form-label">Início*</label>
+            <input
+              type="date"
+              id="inputBegin1"
+              name="beginDate"
+              class="form-control"
+              [ngClass]="beginField.invalid && beginField.touched ? 'is-invalid' : ''"
+              placeholder="dd/mm/aaaa"
+              autocomplete="off"
+              ngModel
+              required
+              #beginField="ngModel"
+            />
+            @if (beginField.invalid && beginField.touched) {
+            <div class="form-text text-danger">O Início é obrigatório</div>
+            }
+          </div>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-12">
+            <label for="inputEnd1" class="form-label">Fim*</label>
+            <input
+              type="date"
+              id="inputEnd1"
+              name="endDate"
+              class="form-control"
+              [ngClass]="endField.invalid && endField.touched ? 'is-invalid' : ''"
+              placeholder="dd/mm/aaaa"
+              autocomplete="off"
+              ngModel
+              required
+              #endField="ngModel"
+            />
+            @if (endField.invalid && endField.touched) {
+            <div class="form-text text-danger">O Fim é obrigatório</div>
+            }
+          </div>
+        </div>
+      </fieldset>
+      <br />
+      <button type="submit" class="btn btn-primary me-2">{{ editMode ? "Atualizar" : "Cadastrar" }}</button>
+      <a routerLink="../.." class="btn btn-secondary">Cancelar</a>
+      <br /><br />
+    </form>
+  </div>
+</div>
+} @else {
+<div class="row justify-content-center">
+  <div class="col-xl-10 col-xxl-8">
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">Erro!</h4>
+      <p>Este Termo não existe.</p>
+      <hr />
+      <p class="mb-0">Por favor, verifique o endereço digitado e tente novamente.</p>
+    </div>
+  </div>
+</div>
+}

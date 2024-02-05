@@ -129,7 +129,23 @@ export class EmployeeService {
     return of({ employees, total });
   }
 
+  public getEmployees(): Observable<Employee[]> {
+    return of(EMPLOYEES);
+  }
+
   public getEmployee(id: number): Observable<Employee | undefined> {
     return of(EMPLOYEES.find((employee) => employee.id === id));
+  }
+
+  public create(employee: Employee): Observable<Employee> {
+    employee.id = EMPLOYEES.length + 1;
+    EMPLOYEES.push(employee);
+    return of(employee);
+  }
+
+  public update(employee: Employee): Observable<Employee> {
+    const index = EMPLOYEES.findIndex((e) => e.id === employee.id);
+    EMPLOYEES[index] = employee;
+    return of(employee);
   }
 }

@@ -124,6 +124,10 @@ export class GrantorService {
     return of({ grantors, total });
   }
 
+  public getGrantors(): Observable<Grantor[]> {
+    return of(GRANTORS);
+  }
+
   getGrantor(id: number): Observable<Grantor | null> {
     return of(GRANTORS.find((c) => c.id === id) || null);
   }

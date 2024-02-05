@@ -20,7 +20,6 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <!-- <th scope="col">#</th> -->
         <th scope="col" sortable="grantorName" (sort)="onSort($event)">Fomentador</th>
         <th scope="col" sortable="projectName" (sort)="onSort($event)">Projeto</th>
         <th scope="col" sortable="courseName" (sort)="onSort($event)">Curso</th>
@@ -34,7 +33,6 @@
     <tbody>
       @for (contract of contracts$ | async; track contract.id) {
       <tr>
-        <!-- <th scope="row" class="py-1 align-middle">{{ contract.id }}</th> -->
         <td class="py-1 align-middle"><ngb-highlight [result]="contract.grantorName | shortStr : 20" [term]="service.searchTerm" /></td>
         <td class="py-1 align-middle"><ngb-highlight [result]="contract.projectName | shortStr : 20" [term]="service.searchTerm" /></td>
         <td class="py-1 align-middle"><ngb-highlight [result]="contract.courseName | shortStr : 20" [term]="service.searchTerm" /></td>

@@ -21,7 +21,6 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <!-- <th scope="col">#</th> -->
         <th scope="col" sortable="name" (sort)="onSort($event)">Nome</th>
         <th scope="col" class="text-center">Ações</th>
       </tr>
@@ -29,11 +28,9 @@
     <tbody>
       @for (grantor of grantors$ | async; track grantor.id) {
       <tr>
-        <!-- <th scope="row" class="py-1 align-middle">{{ grantor.id }}</th> -->
         <td class="py-1 align-middle"><ngb-highlight [result]="grantor.name" [term]="service.searchTerm" /></td>
         <td class="d-flex justify-content-center py-1 align-middle">
           <span class="d-inline-flex">
-            <!-- <a role="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Ver Fomentador" routerLink="/financeiro/fomentadores/{{ grantor.id }}"><i class="bi bi-eye-fill"></i></a> -->
             <a role="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Editar Fomentador" routerLink="/financeiro/fomentadores/{{ grantor.id }}/editar"><i class="bi bi-pencil-fill"></i></a>
             <button type="button" class="btn btn-sm btn-danger me-1" ngbTooltip="Excluir Fomentador"><i class="bi bi-trash-fill"></i></button>
           </span>

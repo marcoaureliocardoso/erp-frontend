@@ -36,7 +36,8 @@ function matches(contract: Contract, term: string) {
     contract.grantorName.toLowerCase().includes(term.toLowerCase()) ||
     contract.projectName.toLowerCase().includes(term.toLowerCase()) ||
     contract.courseName.toLowerCase().includes(term.toLowerCase()) ||
-    contract.employeeGivenName.toLowerCase().includes(term.toLowerCase())
+    contract.employeeGivenName.toLowerCase().includes(term.toLowerCase()) ||
+    contract.employeeSurname.toLowerCase().includes(term.toLowerCase())
   );
 }
 
@@ -131,5 +132,17 @@ export class ContractService {
 
   public getContract(id: number): Observable<Contract | undefined> {
     return of(CONTRACTS.find((contract) => contract.id === id));
+  }
+
+  public create(contract: Contract): Observable<Contract> {
+    contract.id = CONTRACTS.length + 1;
+    CONTRACTS.push(contract);
+    return of(contract);
+  }
+
+  public update(contract: Contract): Observable<Contract> {
+    const index = CONTRACTS.findIndex((p) => p.id === contract.id);
+    CONTRACTS[index] = contract;
+    return of(contract);
   }
 }

@@ -21,7 +21,6 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <!-- <th scope="col">#</th> -->
         <th scope="col" sortable="date" (sort)="onSort($event)">Data</th>
         <th scope="col" sortable="type" (sort)="onSort($event)">Tipo</th>
         <th scope="col" sortable="employeeGivenName" (sort)="onSort($event)">Nome</th>
@@ -33,7 +32,6 @@
     <tbody>
       @for (contractEvent of contractEvents$ | async; track contractEvent.id) {
       <tr class="py-1 align-middle" [ngClass]="{ 'table-warning': gtToday(contractEvent.date), 'table-success': eqToday(contractEvent.date) }">
-        <!-- <th scope="row" class="py-1 align-middle">{{ contractEvent.id }}</th> -->
         <td class="py-1 align-middle"><ngb-highlight [result]="contractEvent.date | date : 'dd/MM/yy'" [term]="service.searchTerm" /></td>
         <td class="py-1 align-middle"><ngb-highlight [result]="transformType(contractEvent.type)" [term]="service.searchTerm" /></td>
         <td class="py-1 align-middle"><ngb-highlight [result]="contractEvent.employeeGivenName" [term]="service.searchTerm" /></td>
@@ -44,9 +42,6 @@
         </td>
         <td class="d-flex justify-content-center py-1 align-middle">
           <span class="d-inline-flex">
-            <!-- <a role="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Ver Evento"  routerLink="/financeiro/contrato-eventos/{{ contractEvent.id }}"><i class="bi bi-eye-fill"></i></a> -->
-            <!-- <a role="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Editar Evento"  routerLink="/financeiro/contrato-eventos/{{ contractEvent.id }}/editar"><i class="bi bi-pencil-fill"></i></a> -->
-            <!-- <button type="button" class="btn btn-sm btn-danger me-1" ngbTooltip="Excluir Evento" ><i class="bi bi-trash-fill"></i></button> -->
             <button type="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Anotações"><i class="bi bi-journal-text"></i></button>
           </span>
         </td>

@@ -6,7 +6,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'John',
     surname: 'Doe',
     identityNumber: '12345756789',
-    birthDate: new Date('1990-01-15'),
+    birthDate: new Date('1990-01-15T05:00:00.000Z'),
     email: 'john.doe@example.com',
   },
   {
@@ -14,7 +14,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jane',
     surname: 'Smith',
     identityNumber: '98765754321',
-    birthDate: new Date('1988-05-20'),
+    birthDate: new Date('1988-05-20T05:00:00.000Z'),
     email: 'jane.smith@example.com',
   },
   {
@@ -22,7 +22,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jack',
     surname: 'Black',
     identityNumber: '12315723123',
-    birthDate: new Date('1995-12-31'),
+    birthDate: new Date('1995-12-31T05:00:00.000Z'),
     email: 'jack.black@example.net',
   },
   {
@@ -30,7 +30,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jill',
     surname: 'White',
     identityNumber: '32135721321',
-    birthDate: new Date('1993-06-30'),
+    birthDate: new Date('1993-06-30T05:00:00.000Z'),
     email: 'jill.white@example.net',
   },
   {
@@ -38,7 +38,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jim',
     surname: 'Green',
     identityNumber: '45576456456',
-    birthDate: new Date('1991-03-15'),
+    birthDate: new Date('1991-03-15T05:00:00.000Z'),
     email: 'jim.green@example.net',
   },
   {
@@ -46,7 +46,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jenny',
     surname: 'Brown',
     identityNumber: '65465574654',
-    birthDate: new Date('1994-09-15'),
+    birthDate: new Date('1994-09-15T05:00:00.000Z'),
     email: 'jenny.brown@exxample.net',
   },
   {
@@ -54,7 +54,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Joe',
     surname: 'Grey',
     identityNumber: '78978579789',
-    birthDate: new Date('1992-07-31'),
+    birthDate: new Date('1992-07-31T05:00:00.000Z'),
     email: 'joe.grey@example.net',
   },
   {
@@ -62,7 +62,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jessica',
     surname: 'Blue',
     identityNumber: '98795787987',
-    birthDate: new Date('1996-11-30'),
+    birthDate: new Date('1996-11-30T05:00:00.000Z'),
     email: 'jessica.blue@example.net',
   },
   {
@@ -70,7 +70,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'James',
     surname: 'Red',
     identityNumber: '15915579159',
-    birthDate: new Date('1997-02-28'),
+    birthDate: new Date('1997-02-28T05:00:00.000Z'),
     email: 'james.red@example.net',
   },
   {
@@ -78,7 +78,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Julia',
     surname: 'Purple',
     identityNumber: '95195751951',
-    birthDate: new Date('1998-10-31'),
+    birthDate: new Date('1998-10-31T05:00:00.000Z'),
     email: 'julia.purple@example.net',
   },
   {
@@ -86,7 +86,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jason',
     surname: 'Yellow',
     identityNumber: '75375357753',
-    birthDate: new Date('1999-04-30'),
+    birthDate: new Date('1999-04-30T05:00:00.000Z'),
     email: 'jason.yellow@example.net',
   },
   {
@@ -94,7 +94,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jasmine',
     surname: 'Orange',
     identityNumber: '35735757357',
-    birthDate: new Date('2000-08-31'),
+    birthDate: new Date('2000-08-31T05:00:00.000Z'),
     email: 'jasmine.orange@example.net',
   },
   {
@@ -102,7 +102,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Justin',
     surname: 'Cyan',
     identityNumber: '25825578258',
-    birthDate: new Date('2001-01-31'),
+    birthDate: new Date('2001-01-31T05:00:00.000Z'),
     email: 'justin.cyan@example.net',
   },
   {
@@ -110,7 +110,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jade',
     surname: 'Magenta',
     identityNumber: '85285257852',
-    birthDate: new Date('2002-05-31'),
+    birthDate: new Date('2002-05-31T05:00:00.000Z'),
     email: 'jade.magenta@example.net',
   },
   {
@@ -118,7 +118,7 @@ export const EMPLOYEES: Employee[] = [
     givenName: 'Jasper',
     surname: 'Violet',
     identityNumber: '45645576456',
-    birthDate: new Date('2003-09-30'),
+    birthDate: new Date('2003-09-30T05:00:00.000Z'),
     email: 'jasper.violet@example.net',
   },
 ];

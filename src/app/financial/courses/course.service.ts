@@ -124,6 +124,10 @@ export class CourseService {
     return of({ courses, total });
   }
 
+  public getCourses(): Observable<Course[]> {
+    return of(COURSES);
+  }
+
   public getCourse(id: number): Observable<Course | null> {
     return of(COURSES.find((course) => course.id === id) || null);
   }

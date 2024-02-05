@@ -123,4 +123,24 @@ export class ProjectService {
     projects = projects.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
     return of({ projects, total });
   }
+
+  public getProjects(): Observable<Project[]> {
+    return of(PROJECTS);
+  }
+
+  public getProject(id: number): Observable<Project | undefined> {
+    return of(PROJECTS.find((project) => project.id === id));
+  }
+
+  public create(project: Project): Observable<Project> {
+    project.id = PROJECTS.length + 1;
+    PROJECTS.push(project);
+    return of(project);
+  }
+
+  public update(project: Project): Observable<Project> {
+    const index = PROJECTS.findIndex((p) => p.id === project.id);
+    PROJECTS[index] = project;
+    return of(project);
+  }
 }

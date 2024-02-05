@@ -21,7 +21,6 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <!-- <th scope="col">#</th> -->
         <th scope="col" sortable="identityNumber" (sort)="onSort($event)">CPF</th>
         <th scope="col" sortable="givenName" (sort)="onSort($event)">Nome</th>
         <th scope="col" sortable="surname" (sort)="onSort($event)">Sobrenome</th>
@@ -32,7 +31,6 @@
     <tbody>
       @for (employee of employees$ | async; track employee.id) {
       <tr>
-        <!-- <th scope="row" class="py-1 align-middle">{{ employee.id }}</th> -->
         <td class="py-1 align-middle"><ngb-highlight [result]="employee.identityNumber | cpfFormat" [term]="service.searchTerm" /></td>
         <td class="py-1 align-middle"><ngb-highlight [result]="employee.givenName" [term]="service.searchTerm" /></td>
         <td class="py-1 align-middle"><ngb-highlight [result]="employee.surname" [term]="service.searchTerm" /></td>
