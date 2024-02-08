@@ -20,7 +20,11 @@ export class EmployeeEditComponent implements OnInit {
   public editMode: boolean = false;
   public employee: Employee | null = null;
 
-  constructor(private router: Router, private route: ActivatedRoute, private employeeService: EmployeeService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private employeeService: EmployeeService,
+  ) {}
 
   ngOnInit(): void {
     const id: number = Number(this.route.snapshot.params['id']);

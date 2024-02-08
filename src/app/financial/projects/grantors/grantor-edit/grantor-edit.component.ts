@@ -19,7 +19,11 @@ export class GrantorEditComponent implements OnInit {
   public editMode: boolean = false;
   public grantor: Grantor | null = null;
 
-  constructor(private router: Router, private route: ActivatedRoute, private grantorService: GrantorService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private grantorService: GrantorService,
+  ) {}
 
   ngOnInit(): void {
     const id: number = Number(this.route.snapshot.params['id']);

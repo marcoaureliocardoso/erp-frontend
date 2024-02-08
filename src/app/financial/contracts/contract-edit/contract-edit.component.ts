@@ -40,7 +40,7 @@ export class ContractEditComponent implements OnInit {
     private grantorService: GrantorService,
     private projectService: ProjectService,
     private courseService: CourseService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
   ) {}
 
   ngOnInit(): void {

@@ -63,7 +63,7 @@ export class ContractEventService {
         debounceTime(200),
         switchMap(() => this._search()),
         // delay(200),
-        tap(() => this._loading$.next(false))
+        tap(() => this._loading$.next(false)),
       )
       .subscribe((result) => {
         this._contractEvents$.next(result.contractEvents);

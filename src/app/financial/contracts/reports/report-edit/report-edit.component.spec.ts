@@ -8,10 +8,9 @@ describe('ReportEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReportEditComponent]
-    })
-    .compileComponents();
-    
+      imports: [ReportEditComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ReportEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

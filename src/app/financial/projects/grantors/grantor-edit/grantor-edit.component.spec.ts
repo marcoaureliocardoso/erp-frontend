@@ -8,10 +8,9 @@ describe('GrantorEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GrantorEditComponent]
-    })
-    .compileComponents();
-    
+      imports: [GrantorEditComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(GrantorEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

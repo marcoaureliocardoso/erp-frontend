@@ -27,7 +27,12 @@ export class ProjectEditComponent implements OnInit {
 
   public grantors: Grantor[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private projectService: ProjectService, private grantorService: GrantorService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private projectService: ProjectService,
+    private grantorService: GrantorService,
+  ) {}
 
   ngOnInit(): void {
     const id: number = Number(this.route.snapshot.params['id']);

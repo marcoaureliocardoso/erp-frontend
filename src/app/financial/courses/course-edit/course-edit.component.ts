@@ -19,7 +19,11 @@ export class CourseEditComponent implements OnInit {
   public editMode: boolean = false;
   public course: Course | null = null;
 
-  constructor(private router: Router, private route: ActivatedRoute, private courseService: CourseService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private courseService: CourseService,
+  ) {}
 
   ngOnInit(): void {
     const id: number = Number(this.route.snapshot.params['id']);

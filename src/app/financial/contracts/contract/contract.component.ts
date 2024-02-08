@@ -15,7 +15,10 @@ import { ContractService } from '../contract.service';
 export class ContractComponent implements OnInit {
   public contract: Contract | null = null;
 
-  constructor(private route: ActivatedRoute, public service: ContractService) {}
+  constructor(
+    private route: ActivatedRoute,
+    public service: ContractService,
+  ) {}
 
   ngOnInit() {
     const id: number = Number(this.route.snapshot.params['id']);

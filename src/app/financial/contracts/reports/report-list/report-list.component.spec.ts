@@ -8,10 +8,9 @@ describe('ReportListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReportListComponent]
-    })
-    .compileComponents();
-    
+      imports: [ReportListComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ReportListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

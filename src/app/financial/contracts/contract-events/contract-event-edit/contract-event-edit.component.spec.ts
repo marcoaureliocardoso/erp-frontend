@@ -8,10 +8,9 @@ describe('ContractEventEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContractEventEditComponent]
-    })
-    .compileComponents();
-    
+      imports: [ContractEventEditComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ContractEventEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

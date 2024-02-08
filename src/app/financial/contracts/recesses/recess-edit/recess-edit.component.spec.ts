@@ -8,10 +8,9 @@ describe('RecessEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RecessEditComponent]
-    })
-    .compileComponents();
-    
+      imports: [RecessEditComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(RecessEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

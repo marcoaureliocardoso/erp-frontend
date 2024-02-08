@@ -1,151 +1,151 @@
 @if (employee) {
-<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-  <ol class="breadcrumb border-top border-bottom bg-light ps-1">
-    <li class="breadcrumb-item"><a routerLink="">Início</a></li>
-    <li class="breadcrumb-item">Financeiro</li>
-    <li class="breadcrumb-item"><a routerLink="../..">Colaboradores</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{ editMode ? "Editar: " + employee.givenName + " " + employee.surname : "Cadastrar Novo Colaborador" }}</li>
-  </ol>
-</nav>
-<div class="row justify-content-center">
-  <div class="col-xl-10 col-xxl-8">
-    <form (ngSubmit)="submit(frm)" #frm="ngForm">
-      <fieldset>
-        <legend>Dados de Identificação</legend>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputGivenName1" class="form-label">Nome*</label>
-            <input
-              type="text"
-              id="inputGivenName1"
-              name="givenName"
-              class="form-control"
-              [ngClass]="givenNameField.invalid && givenNameField.touched ? 'is-invalid' : ''"
-              placeholder="Nome"
-              minlength="3"
-              maxlength="100"
-              [minlength]="3"
-              [maxlength]="100"
-              autocomplete="off"
-              ngModel
-              required
-              #givenNameField="ngModel"
-            />
-            @if (givenNameField.invalid && givenNameField.touched) {
-            <div class="form-text text-danger">O nome é obrigatório</div>
-            }
+  <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+    <ol class="breadcrumb border-top border-bottom bg-light ps-1">
+      <li class="breadcrumb-item"><a routerLink="">Início</a></li>
+      <li class="breadcrumb-item">Financeiro</li>
+      <li class="breadcrumb-item"><a routerLink="../..">Colaboradores</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ editMode ? "Editar: " + employee.givenName + " " + employee.surname : "Cadastrar Novo Colaborador" }}</li>
+    </ol>
+  </nav>
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-xxl-8">
+      <form (ngSubmit)="submit(frm)" #frm="ngForm">
+        <fieldset>
+          <legend>Dados de Identificação</legend>
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputGivenName1" class="form-label">Nome*</label>
+              <input
+                type="text"
+                id="inputGivenName1"
+                name="givenName"
+                class="form-control"
+                [ngClass]="givenNameField.invalid && givenNameField.touched ? 'is-invalid' : ''"
+                placeholder="Nome"
+                minlength="3"
+                maxlength="100"
+                [minlength]="3"
+                [maxlength]="100"
+                autocomplete="off"
+                ngModel
+                required
+                #givenNameField="ngModel"
+              />
+              @if (givenNameField.invalid && givenNameField.touched) {
+                <div class="form-text text-danger">O nome é obrigatório</div>
+              }
+            </div>
           </div>
-        </div>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputSurname1" class="form-label">Sobrenome*</label>
-            <input
-              type="text"
-              id="inputSurname1"
-              name="surname"
-              class="form-control"
-              [ngClass]="surnameField.invalid && surnameField.touched ? 'is-invalid' : ''"
-              placeholder="Sobrenome"
-              minlength="3"
-              maxlength="100"
-              [minlength]="3"
-              [maxlength]="100"
-              autocomplete="off"
-              ngModel
-              required
-              #surnameField="ngModel"
-            />
-            @if (surnameField.invalid && surnameField.touched) {
-            <div class="form-text text-danger">O sobrenome é obrigatório</div>
-            }
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputSurname1" class="form-label">Sobrenome*</label>
+              <input
+                type="text"
+                id="inputSurname1"
+                name="surname"
+                class="form-control"
+                [ngClass]="surnameField.invalid && surnameField.touched ? 'is-invalid' : ''"
+                placeholder="Sobrenome"
+                minlength="3"
+                maxlength="100"
+                [minlength]="3"
+                [maxlength]="100"
+                autocomplete="off"
+                ngModel
+                required
+                #surnameField="ngModel"
+              />
+              @if (surnameField.invalid && surnameField.touched) {
+                <div class="form-text text-danger">O sobrenome é obrigatório</div>
+              }
+            </div>
           </div>
-        </div>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputIdentityNumber1" class="form-label">CPF*</label>
-            <input
-              type="text"
-              id="inputIdentityNumber1"
-              name="identityNumber"
-              class="form-control"
-              [ngClass]="identityNumberField.invalid && identityNumberField.touched ? 'is-invalid' : ''"
-              placeholder="000.000.000-00"
-              minlength="11"
-              maxlength="11"
-              [minlength]="11"
-              [maxlength]="11"
-              autocomplete="off"
-              ngModel
-              required
-              #identityNumberField="ngModel"
-            />
-            @if (identityNumberField.invalid && identityNumberField.touched) {
-            <div class="form-text text-danger">O CPF é obrigatório</div>
-            }
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputIdentityNumber1" class="form-label">CPF*</label>
+              <input
+                type="text"
+                id="inputIdentityNumber1"
+                name="identityNumber"
+                class="form-control"
+                [ngClass]="identityNumberField.invalid && identityNumberField.touched ? 'is-invalid' : ''"
+                placeholder="000.000.000-00"
+                minlength="11"
+                maxlength="11"
+                [minlength]="11"
+                [maxlength]="11"
+                autocomplete="off"
+                ngModel
+                required
+                #identityNumberField="ngModel"
+              />
+              @if (identityNumberField.invalid && identityNumberField.touched) {
+                <div class="form-text text-danger">O CPF é obrigatório</div>
+              }
+            </div>
           </div>
-        </div>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputBirthDate1" class="form-label">Data de Nascimento*</label>
-            <input
-              type="date"
-              id="inputBirthDate1"
-              name="birthDate"
-              class="form-control"
-              [ngClass]="birthDateField.invalid && birthDateField.touched ? 'is-invalid' : ''"
-              placeholder="dd/mm/aaaa"
-              autocomplete="off"
-              ngModel
-              required
-              #birthDateField="ngModel"
-            />
-            @if (birthDateField.invalid && birthDateField.touched) {
-            <div class="form-text text-danger">A data de nascimento é obrigatória</div>
-            }
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputBirthDate1" class="form-label">Data de Nascimento*</label>
+              <input
+                type="date"
+                id="inputBirthDate1"
+                name="birthDate"
+                class="form-control"
+                [ngClass]="birthDateField.invalid && birthDateField.touched ? 'is-invalid' : ''"
+                placeholder="dd/mm/aaaa"
+                autocomplete="off"
+                ngModel
+                required
+                #birthDateField="ngModel"
+              />
+              @if (birthDateField.invalid && birthDateField.touched) {
+                <div class="form-text text-danger">A data de nascimento é obrigatória</div>
+              }
+            </div>
           </div>
-        </div>
-        <legend>Dados de Contato</legend>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputEmail1" class="form-label">Email*</label>
-            <input
-              type="email"
-              id="inputEmail1"
-              name="email"
-              class="form-control"
-              [ngClass]="emailField.invalid && emailField.touched ? 'is-invalid' : ''"
-              placeholder="usuario@dominio.com"
-              minlength="3"
-              maxlength="100"
-              [minlength]="3"
-              [maxlength]="100"
-              autocomplete="off"
-              ngModel
-              required
-              #emailField="ngModel"
-            />
-            @if (emailField.invalid && emailField.touched) {
-            <div class="form-text text-danger">O email é obrigatório</div>
-            }
+          <legend>Dados de Contato</legend>
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputEmail1" class="form-label">Email*</label>
+              <input
+                type="email"
+                id="inputEmail1"
+                name="email"
+                class="form-control"
+                [ngClass]="emailField.invalid && emailField.touched ? 'is-invalid' : ''"
+                placeholder="usuario@dominio.com"
+                minlength="3"
+                maxlength="100"
+                [minlength]="3"
+                [maxlength]="100"
+                autocomplete="off"
+                ngModel
+                required
+                #emailField="ngModel"
+              />
+              @if (emailField.invalid && emailField.touched) {
+                <div class="form-text text-danger">O email é obrigatório</div>
+              }
+            </div>
           </div>
-        </div>
-      </fieldset>
-      <br />
-      <button type="submit" class="btn btn-primary me-2">{{ editMode ? "Atualizar" : "Cadastrar" }}</button>
-      <a routerLink="../.." class="btn btn-secondary">Cancelar</a>
-      <br /><br />
-    </form>
-  </div>
-</div>
-} @else {
-<div class="row justify-content-center">
-  <div class="col-xl-10 col-xxl-8">
-    <div class="alert alert-danger" role="alert">
-      <h4 class="alert-heading">Erro!</h4>
-      <p>Este Colaborador não existe.</p>
-      <hr />
-      <p class="mb-0">Por favor, verifique o endereço digitado e tente novamente.</p>
+        </fieldset>
+        <br />
+        <button type="submit" class="btn btn-primary me-2">{{ editMode ? "Atualizar" : "Cadastrar" }}</button>
+        <a routerLink="../.." class="btn btn-secondary">Cancelar</a>
+        <br /><br />
+      </form>
     </div>
   </div>
-</div>
+} @else {
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-xxl-8">
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Erro!</h4>
+        <p>Este Colaborador não existe.</p>
+        <hr />
+        <p class="mb-0">Por favor, verifique o endereço digitado e tente novamente.</p>
+      </div>
+    </div>
+  </div>
 }

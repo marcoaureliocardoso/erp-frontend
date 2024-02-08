@@ -1,4 +1,3 @@
-
 export interface Employee {
   id: number;
   givenName: string;

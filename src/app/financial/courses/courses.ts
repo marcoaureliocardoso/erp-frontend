@@ -1,4 +1,4 @@
-import { Course } from "./course";
+import { Course } from './course';
 
 export const COURSES: Course[] = [
   { id: 1, name: 'Renewable Energy Engineering' },

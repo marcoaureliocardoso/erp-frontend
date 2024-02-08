@@ -14,7 +14,7 @@
       <input id="table-complete-search" type="text" class="form-control" name="searchTerm" [(ngModel)]="service.searchTerm" />
     </div>
     @if (service.loading$ | async) {
-    <span class="col col-form-label">Carregando...</span>
+      <span class="col col-form-label">Carregando...</span>
     }
   </div>
 
@@ -31,25 +31,29 @@
     </thead>
     <tbody>
       @for (contractEvent of contractEvents$ | async; track contractEvent.id) {
-      <tr class="py-1 align-middle" [ngClass]="{ 'table-warning': gtToday(contractEvent.date), 'table-success': eqToday(contractEvent.date) }">
-        <td class="py-1 align-middle"><ngb-highlight [result]="contractEvent.date | date : 'dd/MM/yy'" [term]="service.searchTerm" /></td>
-        <td class="py-1 align-middle"><ngb-highlight [result]="transformType(contractEvent.type)" [term]="service.searchTerm" /></td>
-        <td class="py-1 align-middle"><ngb-highlight [result]="contractEvent.employeeGivenName" [term]="service.searchTerm" /></td>
-        <td class="py-1 align-middle"><ngb-highlight [result]="contractEvent.employeeSurname" [term]="service.searchTerm" /></td>
-        <td class="py-1 text-center">
-          @if (contractEvent.note.trim().length > 0) { <i class="bi bi-journal-text me-1" ngbTooltip="Possui Anotações"></i> }
-          @if (contractEvent.sent) { <i class="bi bi-envelope me-1" ngbTooltip="Alerta Enviado"></i> }
-        </td>
-        <td class="d-flex justify-content-center py-1 align-middle">
-          <span class="d-inline-flex">
-            <button type="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Anotações"><i class="bi bi-journal-text"></i></button>
-          </span>
-        </td>
-      </tr>
+        <tr class="py-1 align-middle" [ngClass]="{ 'table-warning': gtToday(contractEvent.date), 'table-success': eqToday(contractEvent.date) }">
+          <td class="py-1 align-middle"><ngb-highlight [result]="contractEvent.date | date: 'dd/MM/yy'" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="transformType(contractEvent.type)" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="contractEvent.employeeGivenName" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="contractEvent.employeeSurname" [term]="service.searchTerm" /></td>
+          <td class="py-1 text-center">
+            @if (contractEvent.note.trim().length > 0) {
+              <i class="bi bi-journal-text me-1" ngbTooltip="Possui Anotações"></i>
+            }
+            @if (contractEvent.sent) {
+              <i class="bi bi-envelope me-1" ngbTooltip="Alerta Enviado"></i>
+            }
+          </td>
+          <td class="d-flex justify-content-center py-1 align-middle">
+            <span class="d-inline-flex">
+              <button type="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Anotações"><i class="bi bi-journal-text"></i></button>
+            </span>
+          </td>
+        </tr>
       } @empty {
-      <tr>
-        <td colspan="4" style="text-align: center">Nenhum Evento encontrado</td>
-      </tr>
+        <tr>
+          <td colspan="4" style="text-align: center">Nenhum Evento encontrado</td>
+        </tr>
       }
     </tbody>
   </table>

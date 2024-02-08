@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './recess-edit.component.html',
-  styleUrl: './recess-edit.component.css'
+  styleUrl: './recess-edit.component.css',
 })
-export class RecessEditComponent {
-
-}
+export class RecessEditComponent {}

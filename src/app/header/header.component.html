@@ -4,26 +4,19 @@
       <img src="assets/logo.png" alt="ERP Sead" height="30" class="d-inline-block align-text-top" />
       Sead
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      aria-controls="navbarNav"
-      [attr.aria-expanded]="!collapsed"
-      aria-label="Toggle navigation"
-      (click)="collapsed = !collapsed"
-    >
+    <button class="navbar-toggler" type="button" aria-controls="navbarNav" [attr.aria-expanded]="!collapsed" aria-label="Toggle navigation" (click)="collapsed = !collapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="" >Início</a>
+          <a class="nav-link active" aria-current="page" routerLink="">Início</a>
         </li>
         <li class="nav-item" ngbDropdown>
           <a id="navbarDropdown1" class="nav-link" ngbDropdownToggle role="button" data-bs-toggle="dropdown" aria-expanded="false">Colaboradores</a>
           <ul ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu">
             <a ngbDropdownItem routerLink="/financeiro/colaboradores">Colaboradores</a>
-            <a ngbDropdownItem  routerLink="/financeiro/termos">Termos</a>
+            <a ngbDropdownItem routerLink="/financeiro/termos">Termos</a>
             <li><hr class="dropdown-divider" /></li>
             <a ngbDropdownItem href="#" (click)="$event.preventDefault()" style="text-decoration: line-through">Recessos</a>
             <li><hr class="dropdown-divider" /></li>
@@ -33,10 +26,10 @@
         <li class="nav-item" ngbDropdown>
           <a id="navbarDropdown2" class="nav-link" ngbDropdownToggle role="button" data-bs-toggle="dropdown" aria-expanded="false">Estrutura</a>
           <ul ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu">
-            <a ngbDropdownItem  routerLink="/financeiro/cursos">Cursos</a>
+            <a ngbDropdownItem routerLink="/financeiro/cursos">Cursos</a>
             <li><hr class="dropdown-divider" /></li>
             <a ngbDropdownItem routerLink="/financeiro/fomentadores">Fomentadores</a>
-            <a ngbDropdownItem  routerLink="/financeiro/projetos">Projetos</a>
+            <a ngbDropdownItem routerLink="/financeiro/projetos">Projetos</a>
           </ul>
         </li>
         <li class="nav-item" ngbDropdown>

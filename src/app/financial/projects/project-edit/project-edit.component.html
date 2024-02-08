@@ -1,130 +1,130 @@
 @if (project) {
-<nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
-  <ol class="breadcrumb border-top border-bottom bg-light ps-1">
-    <li class="breadcrumb-item"><a routerLink="">Início</a></li>
-    <li class="breadcrumb-item">Financeiro</li>
-    <li class="breadcrumb-item"><a routerLink="../..">Projetos</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{ editMode ? "Editar: " + project.name : "Cadastrar Novo Projeto" }}</li>
-  </ol>
-</nav>
-<div class="row justify-content-center">
-  <div class="col-xl-10 col-xxl-8">
-    <form (ngSubmit)="submit(frm)" #frm="ngForm">
-      <fieldset>
-        <legend>Dados de Identificação</legend>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputName1" class="form-label">Nome*</label>
-            <input
-              type="text"
-              id="inputName1"
-              name="name"
-              class="form-control"
-              [ngClass]="nameField.invalid && nameField.touched ? 'is-invalid' : ''"
-              placeholder="Nome"
-              maxlength="100"
-              autocomplete="off"
-              ngModel
-              required
-              #nameField="ngModel"
-            />
-            @if (nameField.invalid && nameField.touched) {
-            <div class="form-text text-danger">O nome é obrigatório</div>
-            }
-          </div>
-        </div>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputCode1" class="form-label">Código*</label>
-            <input
-              type="text"
-              id="inputCode1"
-              name="code"
-              class="form-control"
-              [ngClass]="codeField.invalid && codeField.touched ? 'is-invalid' : ''"
-              placeholder="Código"
-              maxlength="100"
-              autocomplete="off"
-              ngModel
-              required
-              #codeField="ngModel"
-            />
-            @if (codeField.invalid && codeField.touched) {
-            <div class="form-text text-danger">O código é obrigatório</div>
-            }
-          </div>
-        </div>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputGrantor1" class="form-label">Fomentador*</label>
-            <select id="inputGrantor1" name="grantor" class="form-select" [ngClass]="grantorField.invalid && grantorField.touched ? 'is-invalid' : ''" ngModel required #grantorField="ngModel">
-              <option value="" disabled selected>Selecione um fomentador</option>
-              @for (grantor of grantors; track grantor.id) {
-              <option [value]="grantor.id">{{ grantor.name }}</option>
+  <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+    <ol class="breadcrumb border-top border-bottom bg-light ps-1">
+      <li class="breadcrumb-item"><a routerLink="">Início</a></li>
+      <li class="breadcrumb-item">Financeiro</li>
+      <li class="breadcrumb-item"><a routerLink="../..">Projetos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ editMode ? "Editar: " + project.name : "Cadastrar Novo Projeto" }}</li>
+    </ol>
+  </nav>
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-xxl-8">
+      <form (ngSubmit)="submit(frm)" #frm="ngForm">
+        <fieldset>
+          <legend>Dados de Identificação</legend>
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputName1" class="form-label">Nome*</label>
+              <input
+                type="text"
+                id="inputName1"
+                name="name"
+                class="form-control"
+                [ngClass]="nameField.invalid && nameField.touched ? 'is-invalid' : ''"
+                placeholder="Nome"
+                maxlength="100"
+                autocomplete="off"
+                ngModel
+                required
+                #nameField="ngModel"
+              />
+              @if (nameField.invalid && nameField.touched) {
+                <div class="form-text text-danger">O nome é obrigatório</div>
               }
-            </select>
-            @if (grantorField.invalid && grantorField.touched) {
-            <div class="form-text text-danger">O Fomentador é obrigatório</div>
-            }
+            </div>
           </div>
-        </div>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputBegin1" class="form-label">Início*</label>
-            <input
-              type="date"
-              id="inputBegin1"
-              name="beginDate"
-              class="form-control"
-              [ngClass]="beginField.invalid && beginField.touched ? 'is-invalid' : ''"
-              placeholder="dd/mm/aaaa"
-              autocomplete="off"
-              ngModel
-              required
-              #beginField="ngModel"
-            />
-            @if (beginField.invalid && beginField.touched) {
-            <div class="form-text text-danger">O Início é obrigatório</div>
-            }
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputCode1" class="form-label">Código*</label>
+              <input
+                type="text"
+                id="inputCode1"
+                name="code"
+                class="form-control"
+                [ngClass]="codeField.invalid && codeField.touched ? 'is-invalid' : ''"
+                placeholder="Código"
+                maxlength="100"
+                autocomplete="off"
+                ngModel
+                required
+                #codeField="ngModel"
+              />
+              @if (codeField.invalid && codeField.touched) {
+                <div class="form-text text-danger">O código é obrigatório</div>
+              }
+            </div>
           </div>
-        </div>
-        <div class="row g-3 mb-3">
-          <div class="col-12">
-            <label for="inputEnd1" class="form-label">Fim*</label>
-            <input
-              type="date"
-              id="inputEnd1"
-              name="endDate"
-              class="form-control"
-              [ngClass]="endField.invalid && endField.touched ? 'is-invalid' : ''"
-              placeholder="dd/mm/aaaa"
-              autocomplete="off"
-              ngModel
-              required
-              #endField="ngModel"
-            />
-            @if (endField.invalid && endField.touched) {
-            <div class="form-text text-danger">O Fim é obrigatório</div>
-            }
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputGrantor1" class="form-label">Fomentador*</label>
+              <select id="inputGrantor1" name="grantor" class="form-select" [ngClass]="grantorField.invalid && grantorField.touched ? 'is-invalid' : ''" ngModel required #grantorField="ngModel">
+                <option value="" disabled selected>Selecione um fomentador</option>
+                @for (grantor of grantors; track grantor.id) {
+                  <option [value]="grantor.id">{{ grantor.name }}</option>
+                }
+              </select>
+              @if (grantorField.invalid && grantorField.touched) {
+                <div class="form-text text-danger">O Fomentador é obrigatório</div>
+              }
+            </div>
           </div>
-        </div>
-      </fieldset>
-      <br />
-      <button type="submit" class="btn btn-primary me-2">{{ editMode ? "Atualizar" : "Cadastrar" }}</button>
-      <a routerLink="../.." class="btn btn-secondary">Cancelar</a>
-      <br /><br />
-    </form>
-  </div>
-</div>
-} @else {
-<div class="row justify-content-center">
-  <div class="col-xl-10 col-xxl-8">
-    <div class="alert alert-danger" role="alert">
-      <h4 class="alert-heading">Erro!</h4>
-      <p>Este Projeto não existe.</p>
-      <hr />
-      <p class="mb-0">Por favor, verifique o endereço digitado e tente novamente.</p>
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputBegin1" class="form-label">Início*</label>
+              <input
+                type="date"
+                id="inputBegin1"
+                name="beginDate"
+                class="form-control"
+                [ngClass]="beginField.invalid && beginField.touched ? 'is-invalid' : ''"
+                placeholder="dd/mm/aaaa"
+                autocomplete="off"
+                ngModel
+                required
+                #beginField="ngModel"
+              />
+              @if (beginField.invalid && beginField.touched) {
+                <div class="form-text text-danger">O Início é obrigatório</div>
+              }
+            </div>
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-12">
+              <label for="inputEnd1" class="form-label">Fim*</label>
+              <input
+                type="date"
+                id="inputEnd1"
+                name="endDate"
+                class="form-control"
+                [ngClass]="endField.invalid && endField.touched ? 'is-invalid' : ''"
+                placeholder="dd/mm/aaaa"
+                autocomplete="off"
+                ngModel
+                required
+                #endField="ngModel"
+              />
+              @if (endField.invalid && endField.touched) {
+                <div class="form-text text-danger">O Fim é obrigatório</div>
+              }
+            </div>
+          </div>
+        </fieldset>
+        <br />
+        <button type="submit" class="btn btn-primary me-2">{{ editMode ? "Atualizar" : "Cadastrar" }}</button>
+        <a routerLink="../.." class="btn btn-secondary">Cancelar</a>
+        <br /><br />
+      </form>
     </div>
   </div>
-</div>
+} @else {
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-xxl-8">
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Erro!</h4>
+        <p>Este Projeto não existe.</p>
+        <hr />
+        <p class="mb-0">Por favor, verifique o endereço digitado e tente novamente.</p>
+      </div>
+    </div>
+  </div>
 }

@@ -1,4 +1,4 @@
-import { AsyncPipe,  } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -16,7 +16,7 @@ import { CpfFormatPipe } from '../../../shared/cpf-format.pipe';
   imports: [RouterModule, AsyncPipe, FormsModule, NgbHighlight, NgbPaginationModule, EmployeeSortableHeaderDirective, CpfFormatPipe, NgbTooltipModule],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css',
-  providers: [EmployeeService, ],
+  providers: [EmployeeService],
 })
 export class EmployeeListComponent {
   employees$: Observable<Employee[]>;

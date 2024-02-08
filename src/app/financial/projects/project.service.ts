@@ -59,7 +59,7 @@ export class ProjectService {
         debounceTime(200),
         switchMap(() => this._search()),
         // delay(200),
-        tap(() => this._loading$.next(false))
+        tap(() => this._loading$.next(false)),
       )
       .subscribe((result) => {
         this._projects$.next(result.projects);
