@@ -65,12 +65,13 @@ export class EmployeeEditComponent implements OnInit {
       this.employeeService.update(newEmployee).subscribe((data) => {
         this.employee = data;
       });
+      this.router.navigate(['../..'], { relativeTo: this.route });
     } else {
       newEmployee = <Employee>{ id: 0, givenName: form.value.givenName, surname: form.value.surname, identityNumber: form.value.identityNumber, birthDate: birthDate, email: form.value.email };
       this.employeeService.create(newEmployee).subscribe((data) => {
         this.employee = data;
       });
+      this.router.navigate(['..'], { relativeTo: this.route });
     }
-    this.router.navigate(['../..'], { relativeTo: this.route });
   }
 }

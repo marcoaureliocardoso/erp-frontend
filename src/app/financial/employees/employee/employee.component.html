@@ -55,6 +55,15 @@
     </div>
   </div>
 } @else {
-  <div class="col-12 text-danger text-center">Colaborador não encontrado!</div>
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-xxl-8">
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Erro!</h4>
+        <p>Este Colaborador não existe.</p>
+        <hr />
+        <p class="mb-0">Por favor, verifique o endereço digitado e tente novamente.</p>
+      </div>
+    </div>
+  </div>
   <a routerLink=".." class="btn btn-secondary">Lista de Colaboradores</a>
 }

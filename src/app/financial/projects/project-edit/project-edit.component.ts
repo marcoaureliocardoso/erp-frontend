@@ -70,7 +70,7 @@ export class ProjectEditComponent implements OnInit {
   public submit(form: NgForm) {
     let newProject: Project;
 
-    const grantorName = this.grantors.find((g) => g.id === form.value.grantor)?.name;
+    const grantorName = this.grantors.find((g) => g.id === Number(form.value.grantor))?.name;
 
     const dateRegex: RegExp = /(\d{4})-(\d{2})-(\d{2})/;
     const beginDateMatches = dateRegex.exec(form.value.beginDate);
@@ -84,15 +84,16 @@ export class ProjectEditComponent implements OnInit {
       this.projectService.update(newProject).subscribe((data) => {
         this.project = data;
       });
+      this.router.navigate(['../..'], { relativeTo: this.route });
     } else {
       newProject = <Project>{ id: 0, name: form.value.name, grantorId: form.value.grantor, grantor: grantorName, code: form.value.code, beginDate: beginDate, endDate: endDate };
       this.projectService.create(newProject).subscribe((data) => {
         this.project = data;
       });
+      this.router.navigate(['..'], { relativeTo: this.route });
     }
     this.projectService.projects$.subscribe((data) => {
       console.log('project-edit.component.ts: submit(): data:', data);
     });
-    this.router.navigate(['../..'], { relativeTo: this.route });
   }
 }

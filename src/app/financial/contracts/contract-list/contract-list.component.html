@@ -13,7 +13,7 @@
       <input id="table-complete-search" type="text" class="form-control" name="searchTerm" [(ngModel)]="service.searchTerm" />
     </div>
     @if (service.loading$ | async) {
-      <span class="col col-form-label">Loading...</span>
+      <span class="col col-form-label">Carregando...</span>
     }
   </div>
 
@@ -66,3 +66,6 @@
     </select>
   </div>
 </form>
+<br />
+<a routerLink="cadastrar" class="btn btn-primary">Cadastrar Novo</a>
+<br /><br />

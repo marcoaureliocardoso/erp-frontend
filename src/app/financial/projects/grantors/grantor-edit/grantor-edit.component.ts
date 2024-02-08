@@ -52,12 +52,13 @@ export class GrantorEditComponent implements OnInit {
       this.grantorService.update(newGrantor).subscribe((data) => {
         this.grantor = data;
       });
+      this.router.navigate(['../..'], { relativeTo: this.route });
     } else {
       newGrantor = <Grantor>{ id: 0, name: form.value.name };
       this.grantorService.create(newGrantor).subscribe((data) => {
         this.grantor = data;
       });
+      this.router.navigate(['..'], { relativeTo: this.route });
     }
-    this.router.navigate(['../..'], { relativeTo: this.route });
   }
 }

@@ -136,6 +136,7 @@ export class ContractEditComponent implements OnInit {
       this.contractService.update(newContract).subscribe((data) => {
         this.contract = data;
       });
+      this.router.navigate(['../..'], { relativeTo: this.route });
     } else {
       newContract = <Contract>{
         id: 0,
@@ -154,7 +155,7 @@ export class ContractEditComponent implements OnInit {
       this.contractService.create(newContract).subscribe((data) => {
         this.contract = data;
       });
+      this.router.navigate(['..'], { relativeTo: this.route });
     }
-    this.router.navigate(['../..'], { relativeTo: this.route });
   }
 }

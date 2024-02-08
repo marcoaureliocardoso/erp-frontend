@@ -52,12 +52,13 @@ export class CourseEditComponent implements OnInit {
       this.courseService.update(newCourse).subscribe((data) => {
         this.course = data;
       });
+      this.router.navigate(['../..'], { relativeTo: this.route });
     } else {
       newCourse = <Course>{ id: 0, name: form.value.name };
       this.courseService.create(newCourse).subscribe((data) => {
         this.course = data;
       });
+      this.router.navigate(['..'], { relativeTo: this.route });
     }
-    this.router.navigate(['../..'], { relativeTo: this.route });
   }
 }
