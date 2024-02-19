@@ -1,7 +1,7 @@
 import { Directive, EventEmitter, Input, Output } from '@angular/core';
 import { Contract } from './contract';
 
-export type SortColumn = keyof Contract | '';
+export type SortColumn = keyof Contract | '' | 'project.grantor.name' | 'project.name' | 'course.name' | 'employee.givenName' | 'employee.surname';
 export type SortDirection = 'asc' | 'desc' | '';
 const rotate: { [key: string]: SortDirection } = { asc: 'desc', desc: '', '': 'asc' };
 

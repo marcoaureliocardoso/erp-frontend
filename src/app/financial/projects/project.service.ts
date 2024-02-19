@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, debounceTime, switchMap, tap } from 'rxjs';
 
+import { FINANCIAL_API } from '../../shared/api';
+import { Grantor } from './grantors/grantor';
 import { Project } from './project';
 import { SortColumn, SortDirection } from './project-sortable-header.directive';
-import { PROJECTS } from './projects';
 
 interface SearchResult {
   projects: Project[];
@@ -18,21 +20,28 @@ interface State {
   sortDirection: SortDirection;
 }
 
-const compare = (v1: string | number | Date, v2: string | number | Date) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
+const compare = (v1: string | number | Date | Grantor, v2: string | number | Date | Grantor) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
 function sort(projects: Project[], column: SortColumn, direction: string): Project[] {
   if (direction === '' || column === '') {
     return projects;
   } else {
-    return [...projects].sort((a, b) => {
-      const res = compare(a[column], b[column]);
-      return direction === 'asc' ? res : -res;
-    });
+    if (column === 'grantor.name') {
+      return [...projects].sort((a, b) => {
+        const res = compare(a.grantor.name, b.grantor.name);
+        return direction === 'asc' ? res : -res;
+      });
+    } else {
+      return [...projects].sort((a, b) => {
+        const res = compare(a[column], b[column]);
+        return direction === 'asc' ? res : -res;
+      });
+    }
   }
 }
 
 function matches(project: Project, term: string) {
-  return project.name.toLowerCase().includes(term.toLowerCase()) || project.grantor.toLowerCase().includes(term.toLowerCase()) || project.code.toLowerCase().includes(term.toLowerCase());
+  return project.name.toLowerCase().includes(term.toLowerCase()) || project.grantor.name.toLowerCase().includes(term.toLowerCase()) || project.code.toLowerCase().includes(term.toLowerCase());
 }
 
 @Injectable({
@@ -52,13 +61,12 @@ export class ProjectService {
     sortDirection: '',
   };
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
         debounceTime(200),
         switchMap(() => this._search()),
-        // delay(200),
         tap(() => this._loading$.next(false)),
       )
       .subscribe((result) => {
@@ -110,37 +118,42 @@ export class ProjectService {
   }
 
   private _search(): Observable<SearchResult> {
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
+    return new Observable<SearchResult>((observer) => {
+      this.http.get<Project[]>(FINANCIAL_API + '/projects').subscribe({
+        next: (data) => {
+          const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
-    // 1. sort
-    let projects = sort(PROJECTS, sortColumn, sortDirection);
+          // 1. sort
+          let projects = sort(data, sortColumn, sortDirection);
 
-    // 2. filter
-    projects = projects.filter((project) => matches(project, searchTerm));
-    const total = projects.length;
+          // 2. filter
+          projects = projects.filter((project) => matches(project, searchTerm));
+          const total = projects.length;
 
-    // 3. paginate
-    projects = projects.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({ projects, total });
+          // 3. paginate
+          projects = projects.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+
+          observer.next({ projects, total });
+        },
+        error: (error) => observer.error(error),
+        complete: () => observer.complete(),
+      });
+    });
   }
 
   public getProjects(): Observable<Project[]> {
-    return of(PROJECTS);
+    return this.http.get<Project[]>(FINANCIAL_API + '/projects');
   }
 
   public getProject(id: number): Observable<Project | undefined> {
-    return of(PROJECTS.find((project) => project.id === id));
+    return this.http.get<Project>(FINANCIAL_API + '/projects/' + id);
   }
 
   public create(project: Project): Observable<Project> {
-    project.id = PROJECTS.length + 1;
-    PROJECTS.push(project);
-    return of(project);
+    return this.http.post<Project>(FINANCIAL_API + '/projects', project);
   }
 
   public update(project: Project): Observable<Project> {
-    const index = PROJECTS.findIndex((p) => p.id === project.id);
-    PROJECTS[index] = project;
-    return of(project);
+    return this.http.put<Project>(FINANCIAL_API + '/projects/' + project.id, project);
   }
 }

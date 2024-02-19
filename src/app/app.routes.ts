@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { ContractEditComponent } from './financial/contracts/contract-edit/contract-edit.component';
-import { ContractEventListComponent } from './financial/contracts/contract-events/contract-event-list/contract-event-list.component';
+import { ContractEventListComponent } from './financial/contracts/contract-event-reminders/contract-event-reminder-list/contract-event-reminder-list.component';
 import { ContractListComponent } from './financial/contracts/contract-list/contract-list.component';
 import { ContractComponent } from './financial/contracts/contract/contract.component';
 import { CourseEditComponent } from './financial/courses/course-edit/course-edit.component';
@@ -34,6 +34,6 @@ export const routes: Routes = [
   { path: 'financeiro/fomentadores', component: GrantorListComponent, title: 'ERP - Fomentadores' },
   { path: 'financeiro/fomentadores/cadastrar', component: GrantorEditComponent, title: 'ERP - Cadastrar Fomentador' },
   { path: 'financeiro/fomentadores/:id/editar', component: GrantorEditComponent, title: 'ERP - Editar Fomentador' },
-  { path: 'financeiro/contrato-eventos', component: ContractEventListComponent, title: 'ERP - Eventos' },
+  { path: 'financeiro/contrato-alertas', component: ContractEventListComponent, title: 'ERP - Alertas de Eventos' },
   { path: '**', component: HomeComponent, title: 'ERP - Início' },
 ];

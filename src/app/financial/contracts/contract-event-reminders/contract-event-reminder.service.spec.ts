@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ContractEventService } from './contract-event.service';
+import { ContractEventReminderService } from './contract-event-reminder.service';
 
 describe('EventService', () => {
-  let service: ContractEventService;
+  let service: ContractEventReminderService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ContractEventService);
+    service = TestBed.inject(ContractEventReminderService);
   });
 
   it('should be created', () => {

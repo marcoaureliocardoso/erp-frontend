@@ -1,7 +1,7 @@
 export interface Report {
   id: number;
   contractId: number;
-  beginDate: Date;
+  startDate: Date;
   endDate: Date;
   informDeadline: Date;
 }

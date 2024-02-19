@@ -1,9 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, debounceTime, switchMap, tap } from 'rxjs';
 
+import { FINANCIAL_API } from '../../shared/api';
 import { Course } from './course';
 import { SortColumn, SortDirection } from './course-sortable-header.directive';
-import { COURSES } from './courses';
 
 interface SearchResult {
   courses: Course[];
@@ -52,13 +53,12 @@ export class CourseService {
     sortDirection: '',
   };
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
         debounceTime(200),
         switchMap(() => this._search()),
-        // delay(200),
         tap(() => this._loading$.next(false)),
       )
       .subscribe((result) => {
@@ -110,37 +110,42 @@ export class CourseService {
   }
 
   private _search(): Observable<SearchResult> {
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
+    return new Observable<SearchResult>((observer) => {
+      this.http.get<Course[]>(FINANCIAL_API + '/courses').subscribe({
+        next: (data) => {
+          const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
-    // 1. sort
-    let courses = sort(COURSES, sortColumn, sortDirection);
+          // 1. sort
+          let courses = sort(data, sortColumn, sortDirection);
 
-    // 2. filter
-    courses = courses.filter((course) => matches(course, searchTerm));
-    const total = courses.length;
+          // 2. filter
+          courses = courses.filter((course) => matches(course, searchTerm));
+          const total = courses.length;
 
-    // 3. paginate
-    courses = courses.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({ courses, total });
+          // 3. paginate
+          courses = courses.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+
+          observer.next({ courses, total });
+        },
+        error: (error) => observer.error(error),
+        complete: () => observer.complete(),
+      });
+    });
   }
 
   public getCourses(): Observable<Course[]> {
-    return of(COURSES);
+    return this.http.get<Course[]>(FINANCIAL_API + '/courses');
   }
 
   public getCourse(id: number): Observable<Course | null> {
-    return of(COURSES.find((course) => course.id === id) || null);
+    return this.http.get<Course>(FINANCIAL_API + '/courses/' + id);
   }
 
   public create(course: Course): Observable<Course> {
-    course.id = COURSES.length + 1;
-    COURSES.push(course);
-    return of(course);
+    return this.http.post<Course>(FINANCIAL_API + '/courses', course);
   }
 
   public update(course: Course): Observable<Course> {
-    const index = COURSES.findIndex((c) => c.id === course.id);
-    COURSES[index] = course;
-    return of(course);
+    return this.http.put<Course>(FINANCIAL_API + '/courses/' + course.id, course);
   }
 }

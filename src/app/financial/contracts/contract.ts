@@ -1,15 +1,13 @@
+import { Course } from '../courses/course';
+import { Employee } from '../employees/employee';
+import { Project } from '../projects/project';
+
 export interface Contract {
   id: number;
-  grantorId: number;
-  grantorName: string;
-  projectId: number;
-  projectName: string;
-  courseId: number;
-  courseName: string;
-  employeeId: number;
-  employeeGivenName: string;
-  employeeSurname: string;
-  beginDate: Date;
+  project: Project;
+  course: Course;
+  employee: Employee;
+  startDate: Date;
   endDate: Date;
   informDeadlineOfFirstRecess: Date;
   informDeadlineOfSecondRecess: Date;

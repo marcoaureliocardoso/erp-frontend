@@ -14,20 +14,6 @@
           <legend>Dados do Termo</legend>
           <div class="row g-3 mb-3">
             <div class="col-12">
-              <label for="inputGrantor1" class="form-label">Fomentador*</label>
-              <select id="inputGrantor1" name="grantor" class="form-select" [ngClass]="grantorField.invalid && grantorField.touched ? 'is-invalid' : ''" ngModel required #grantorField="ngModel">
-                <option value="" disabled selected>Selecione um fomentador</option>
-                @for (grantor of grantors; track grantor.id) {
-                  <option [value]="grantor.id">{{ grantor.name }}</option>
-                }
-              </select>
-              @if (grantorField.invalid && grantorField.touched) {
-                <div class="form-text text-danger">O Fomentador é obrigatório</div>
-              }
-            </div>
-          </div>
-          <div class="row g-3 mb-3">
-            <div class="col-12">
               <label for="inputProject1" class="form-label">Projeto*</label>
               <select id="inputProject1" name="project" class="form-select" [ngClass]="projectField.invalid && projectField.touched ? 'is-invalid' : ''" ngModel required #projectField="ngModel">
                 <option value="" disabled selected>Selecione um projeto</option>
@@ -74,7 +60,7 @@
               <input
                 type="date"
                 id="inputBegin1"
-                name="beginDate"
+                name="startDate"
                 class="form-control"
                 [ngClass]="beginField.invalid && beginField.touched ? 'is-invalid' : ''"
                 placeholder="dd/mm/aaaa"
@@ -111,7 +97,7 @@
         </fieldset>
         <br />
         <button type="submit" [disabled]="frm.invalid" class="btn btn-primary me-2">{{ editMode ? "Atualizar" : "Cadastrar" }}</button>
-        <a routerLink="../.." class="btn btn-secondary">Cancelar</a>
+        <a routerLink=".." class="btn btn-secondary">Cancelar</a>
         <br /><br />
       </form>
     </div>

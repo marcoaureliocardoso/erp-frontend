@@ -1,9 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, debounceTime, switchMap, tap } from 'rxjs';
 
+import { FINANCIAL_API } from '../../../shared/api';
 import { Grantor } from './grantor';
 import { SortColumn, SortDirection } from './grantor-sortable-header.directive';
-import { GRANTORS } from './grantors';
 
 interface SearchResult {
   grantors: Grantor[];
@@ -52,13 +53,12 @@ export class GrantorService {
     sortDirection: '',
   };
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
         debounceTime(200),
         switchMap(() => this._search()),
-        // delay(200),
         tap(() => this._loading$.next(false)),
       )
       .subscribe((result) => {
@@ -110,37 +110,42 @@ export class GrantorService {
   }
 
   private _search(): Observable<SearchResult> {
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
+    return new Observable<SearchResult>((observer) => {
+      this.http.get<Grantor[]>(FINANCIAL_API + '/grantors').subscribe({
+        next: (data) => {
+          const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
-    // 1. sort
-    let grantors = sort(GRANTORS, sortColumn, sortDirection);
+          // 1. sort
+          let grantors = sort(data, sortColumn, sortDirection);
 
-    // 2. filter
-    grantors = grantors.filter((grantor) => matches(grantor, searchTerm));
-    const total = grantors.length;
+          // 2. filter
+          grantors = grantors.filter((grantor) => matches(grantor, searchTerm));
+          const total = grantors.length;
 
-    // 3. paginate
-    grantors = grantors.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({ grantors, total });
+          // 3. paginate
+          grantors = grantors.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+
+          observer.next({ grantors, total });
+        },
+        error: (error) => observer.error(error),
+        complete: () => observer.complete(),
+      });
+    });
   }
 
   public getGrantors(): Observable<Grantor[]> {
-    return of(GRANTORS);
+    return this.http.get<Grantor[]>(FINANCIAL_API + '/grantors');
   }
 
   getGrantor(id: number): Observable<Grantor | null> {
-    return of(GRANTORS.find((c) => c.id === id) || null);
+    return this.http.get<Grantor>(FINANCIAL_API + '/grantors/' + id);
   }
 
   public create(grantor: Grantor): Observable<Grantor> {
-    grantor.id = GRANTORS.length + 1;
-    GRANTORS.push(grantor);
-    return of(grantor);
+    return this.http.post<Grantor>(FINANCIAL_API + '/grantors', grantor);
   }
 
   public update(grantor: Grantor): Observable<Grantor> {
-    const index = GRANTORS.findIndex((c) => c.id === grantor.id);
-    GRANTORS[index] = grantor;
-    return of(grantor);
+    return this.http.put<Grantor>(FINANCIAL_API + '/grantors/' + grantor.id, grantor);
   }
 }

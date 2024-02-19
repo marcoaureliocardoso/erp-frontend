@@ -1,9 +1,10 @@
+import { Grantor } from './grantors/grantor';
+
 export interface Project {
   id: number;
   name: string;
-  grantorId: number;
-  grantor: string;
+  grantor: Grantor;
   code: string;
-  beginDate: Date;
+  startDate: Date;
   endDate: Date;
 }

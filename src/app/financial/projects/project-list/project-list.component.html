@@ -22,9 +22,9 @@
     <thead>
       <tr>
         <th scope="col" sortable="name" (sort)="onSort($event)">Nome</th>
-        <th scope="col" sortable="grantor" (sort)="onSort($event)">Fomentador</th>
+        <th scope="col" sortable="grantor.name" (sort)="onSort($event)">Fomentador</th>
         <th scope="col" sortable="code" (sort)="onSort($event)">Código</th>
-        <th scope="col" sortable="beginDate" (sort)="onSort($event)">Início</th>
+        <th scope="col" sortable="startDate" (sort)="onSort($event)">Início</th>
         <th scope="col" sortable="endDate" (sort)="onSort($event)">Término</th>
         <th scope="col" class="text-center">Ações</th>
       </tr>
@@ -33,9 +33,9 @@
       @for (project of projects$ | async; track project.id) {
         <tr>
           <td class="py-1 align-middle"><ngb-highlight [result]="project.name" [term]="service.searchTerm" /></td>
-          <td class="py-1 align-middle"><ngb-highlight [result]="project.grantor" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="project.grantor.name" [term]="service.searchTerm" /></td>
           <td class="py-1 align-middle"><ngb-highlight [result]="project.code" [term]="service.searchTerm" /></td>
-          <td class="py-1 align-middle"><ngb-highlight [result]="project.beginDate | date: 'dd/MM/yy' : 'UTC -3'" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="project.startDate | date: 'dd/MM/yy' : 'UTC -3'" [term]="service.searchTerm" /></td>
           <td class="py-1 align-middle"><ngb-highlight [result]="project.endDate | date: 'dd/MM/yy' : 'UTC -3'" [term]="service.searchTerm" /></td>
           <td class="d-flex justify-content-center py-1 align-middle">
             <span class="d-inline-flex">

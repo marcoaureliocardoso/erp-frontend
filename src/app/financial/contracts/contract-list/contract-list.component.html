@@ -20,12 +20,12 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col" sortable="grantorName" (sort)="onSort($event)">Fomentador</th>
-        <th scope="col" sortable="projectName" (sort)="onSort($event)">Projeto</th>
-        <th scope="col" sortable="courseName" (sort)="onSort($event)">Curso</th>
-        <th scope="col" sortable="employeeGivenName" (sort)="onSort($event)">Colaborador</th>
-        <th scope="col" sortable="employeeSurname" (sort)="onSort($event)">Sobrenome</th>
-        <th scope="col" sortable="beginDate" (sort)="onSort($event)">Início</th>
+        <th scope="col" sortable="project.name" (sort)="onSort($event)">Projeto</th>
+        <th scope="col" sortable="project.grantor.name" (sort)="onSort($event)">Fomentador</th>
+        <th scope="col" sortable="course.name" (sort)="onSort($event)">Curso</th>
+        <th scope="col" sortable="employee.givenName" (sort)="onSort($event)">Nome</th>
+        <th scope="col" sortable="employee.surname" (sort)="onSort($event)">Sobrenome</th>
+        <th scope="col" sortable="startDate" (sort)="onSort($event)">Início</th>
         <th scope="col" sortable="endDate" (sort)="onSort($event)">Término</th>
         <th scope="col" class="text-center">Ações</th>
       </tr>
@@ -33,12 +33,12 @@
     <tbody>
       @for (contract of contracts$ | async; track contract.id) {
         <tr>
-          <td class="py-1 align-middle"><ngb-highlight [result]="contract.grantorName | shortStr: 20" [term]="service.searchTerm" /></td>
-          <td class="py-1 align-middle"><ngb-highlight [result]="contract.projectName | shortStr: 20" [term]="service.searchTerm" /></td>
-          <td class="py-1 align-middle"><ngb-highlight [result]="contract.courseName | shortStr: 20" [term]="service.searchTerm" /></td>
-          <td class="py-1 align-middle"><ngb-highlight [result]="contract.employeeGivenName" [term]="service.searchTerm" /></td>
-          <td class="py-1 align-middle"><ngb-highlight [result]="contract.employeeSurname" [term]="service.searchTerm" /></td>
-          <td class="py-1 align-middle"><ngb-highlight [result]="contract.beginDate | date: 'dd/MM/yy'" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="contract.project.name | shortStr: 20" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="contract.project.grantor.name | shortStr: 20" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="contract.course.name | shortStr: 20" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="contract.employee.givenName" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="contract.employee.surname" [term]="service.searchTerm" /></td>
+          <td class="py-1 align-middle"><ngb-highlight [result]="contract.startDate | date: 'dd/MM/yy'" [term]="service.searchTerm" /></td>
           <td class="py-1 align-middle"><ngb-highlight [result]="contract.endDate | date: 'dd/MM/yy'" [term]="service.searchTerm" /></td>
           <td class="d-flex justify-content-center py-1 align-middle">
             <span class="d-inline-flex">
@@ -50,7 +50,7 @@
         </tr>
       } @empty {
         <tr>
-          <td colspan="4" style="text-align: center">Nenhum Termo Encontrado</td>
+          <td colspan="8" style="text-align: center">Nenhum Termo Encontrado</td>
         </tr>
       }
     </tbody>

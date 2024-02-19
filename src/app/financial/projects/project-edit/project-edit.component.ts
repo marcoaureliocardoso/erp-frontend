@@ -53,15 +53,15 @@ export class ProjectEditComponent implements OnInit {
           setTimeout(() => {
             this.projectForm.setValue({
               name: this.project!.name,
-              grantor: this.project!.grantorId,
+              grantor: this.project!.grantor.id,
               code: this.project!.code,
-              beginDate: formatDate(this.project!.beginDate, 'yyyy-MM-dd', 'pt-Br', 'UTC-3'),
+              startDate: formatDate(this.project!.startDate, 'yyyy-MM-dd', 'pt-Br', 'UTC-3'),
               endDate: formatDate(this.project!.endDate, 'yyyy-MM-dd', 'pt-Br', 'UTC-3'),
             });
           }, 0);
         });
       } else {
-        this.project = <Project>{ id: 0, name: '', grantor: '', code: '', beginDate: new Date(), endDate: new Date() };
+        this.project = <Project>{ id: 0, name: '', grantor: {}, code: '', startDate: new Date(), endDate: new Date() };
       }
       // }, 0);
     });
@@ -70,30 +70,27 @@ export class ProjectEditComponent implements OnInit {
   public submit(form: NgForm) {
     let newProject: Project;
 
-    const grantorName = this.grantors.find((g) => g.id === Number(form.value.grantor))?.name;
-
     const dateRegex: RegExp = /(\d{4})-(\d{2})-(\d{2})/;
-    const beginDateMatches = dateRegex.exec(form.value.beginDate);
+    const startDateMatches = dateRegex.exec(form.value.startDate);
     const endDateMatches = dateRegex.exec(form.value.endDate);
 
-    const beginDate = new Date(Number(beginDateMatches![1]), Number(beginDateMatches![2]) - 1, Number(beginDateMatches![3]), 5, 0, 0, 0);
+    const startDate = new Date(Number(startDateMatches![1]), Number(startDateMatches![2]) - 1, Number(startDateMatches![3]), 5, 0, 0, 0);
     const endDate = new Date(Number(endDateMatches![1]), Number(endDateMatches![2]) - 1, Number(endDateMatches![3]), 5, 0, 0, 0);
 
+    const newGrantor = this.grantors.find((g) => g.id === Number(form.value.grantor));
+
     if (this.editMode) {
-      newProject = <Project>{ id: this.project!.id, name: form.value.name, grantorId: form.value.grantor, grantor: grantorName, code: form.value.code, beginDate: beginDate, endDate: endDate };
+      newProject = <Project>{ id: this.project!.id, name: form.value.name, grantor: newGrantor, code: form.value.code, startDate: startDate, endDate: endDate };
       this.projectService.update(newProject).subscribe((data) => {
         this.project = data;
       });
       this.router.navigate(['../..'], { relativeTo: this.route });
     } else {
-      newProject = <Project>{ id: 0, name: form.value.name, grantorId: form.value.grantor, grantor: grantorName, code: form.value.code, beginDate: beginDate, endDate: endDate };
+      newProject = <Project>{ id: 0, name: form.value.name, grantor: newGrantor, code: form.value.code, startDate: startDate, endDate: endDate };
       this.projectService.create(newProject).subscribe((data) => {
         this.project = data;
       });
       this.router.navigate(['..'], { relativeTo: this.route });
     }
-    this.projectService.projects$.subscribe((data) => {
-      console.log('project-edit.component.ts: submit(): data:', data);
-    });
   }
 }

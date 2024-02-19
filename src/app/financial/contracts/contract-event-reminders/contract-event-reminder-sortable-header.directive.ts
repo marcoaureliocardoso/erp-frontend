@@ -1,7 +1,7 @@
 import { Directive, EventEmitter, Input, Output } from '@angular/core';
-import { ContractEvent } from './contract-event';
+import { ContractEventReminder } from './contract-event-reminder';
 
-export type SortColumn = keyof ContractEvent | '';
+export type SortColumn = keyof ContractEventReminder | '' | 'contract.employee.surname' | 'contract.employee.givenName';
 export type SortDirection = 'asc' | 'desc' | '';
 const rotate: { [key: string]: SortDirection } = { asc: 'desc', desc: '', '': 'asc' };
 
@@ -19,7 +19,7 @@ export interface SortEvent {
     '(click)': 'rotate()',
   },
 })
-export class ContractEventSortableHeaderDirective {
+export class ContractEventReminderSortableHeaderDirective {
   @Input() sortable: SortColumn = '';
   @Input() direction: SortDirection = '';
   @Output() sort = new EventEmitter<SortEvent>();

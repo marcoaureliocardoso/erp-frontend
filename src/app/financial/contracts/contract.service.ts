@@ -1,9 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, debounceTime, switchMap, tap } from 'rxjs';
 
+import { FINANCIAL_API } from '../../shared/api';
+import { Course } from '../courses/course';
+import { Employee } from '../employees/employee';
+import { Grantor } from '../projects/grantors/grantor';
+import { Project } from '../projects/project';
 import { Contract } from './contract';
 import { SortColumn, SortDirection } from './contract-sortable-header.directive';
-import { CONTRACTS } from './contracts';
 
 interface SearchResult {
   contracts: Contract[];
@@ -18,26 +23,54 @@ interface State {
   sortDirection: SortDirection;
 }
 
-const compare = (v1: string | number | Date, v2: string | number | Date) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
+const compare = (v1: string | number | Date | Grantor | Project | Course | Employee, v2: string | number | Date | Grantor | Project | Course | Employee) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
 function sort(contracts: Contract[], column: SortColumn, direction: string): Contract[] {
   if (direction === '' || column === '') {
     return contracts;
   } else {
-    return [...contracts].sort((a, b) => {
-      const res = compare(a[column], b[column]);
-      return direction === 'asc' ? res : -res;
-    });
+    switch (column) {
+      case 'project.grantor.name':
+        return [...contracts].sort((a, b) => {
+          const res = compare(a.project.grantor.name, b.project.grantor.name);
+          return direction === 'asc' ? res : -res;
+        });
+      case 'project.name':
+        return [...contracts].sort((a, b) => {
+          const res = compare(a.project.name, b.project.name);
+          return direction === 'asc' ? res : -res;
+        });
+      case 'course.name':
+        return [...contracts].sort((a, b) => {
+          const res = compare(a.course.name, b.course.name);
+          return direction === 'asc' ? res : -res;
+        });
+      case 'employee.givenName':
+        return [...contracts].sort((a, b) => {
+          const res = compare(a.employee.givenName, b.employee.givenName);
+          return direction === 'asc' ? res : -res;
+        });
+      case 'employee.surname':
+        return [...contracts].sort((a, b) => {
+          const res = compare(a.employee.surname, b.employee.surname);
+          return direction === 'asc' ? res : -res;
+        });
+      default:
+        return [...contracts].sort((a, b) => {
+          const res = compare(a[column], b[column]);
+          return direction === 'asc' ? res : -res;
+        });
+    }
   }
 }
 
 function matches(contract: Contract, term: string) {
   return (
-    contract.grantorName.toLowerCase().includes(term.toLowerCase()) ||
-    contract.projectName.toLowerCase().includes(term.toLowerCase()) ||
-    contract.courseName.toLowerCase().includes(term.toLowerCase()) ||
-    contract.employeeGivenName.toLowerCase().includes(term.toLowerCase()) ||
-    contract.employeeSurname.toLowerCase().includes(term.toLowerCase())
+    contract.project.grantor.name.toLowerCase().includes(term.toLowerCase()) ||
+    contract.project.name.toLowerCase().includes(term.toLowerCase()) ||
+    contract.course.name.toLowerCase().includes(term.toLowerCase()) ||
+    contract.employee.givenName.toLowerCase().includes(term.toLowerCase()) ||
+    contract.employee.surname.toLowerCase().includes(term.toLowerCase())
   );
 }
 
@@ -58,13 +91,12 @@ export class ContractService {
     sortDirection: '',
   };
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
         debounceTime(200),
         switchMap(() => this._search()),
-        // delay(200),
         tap(() => this._loading$.next(false)),
       )
       .subscribe((result) => {
@@ -116,33 +148,42 @@ export class ContractService {
   }
 
   private _search(): Observable<SearchResult> {
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
+    return new Observable<SearchResult>((observer) => {
+      this.http.get<Contract[]>(FINANCIAL_API + '/contracts').subscribe({
+        next: (data) => {
+          const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
-    // 1. sort
-    let contracts = sort(CONTRACTS, sortColumn, sortDirection);
+          // 1. sort
+          let contracts = sort(data, sortColumn, sortDirection);
 
-    // 2. filter
-    contracts = contracts.filter((contract) => matches(contract, searchTerm));
-    const total = contracts.length;
+          // 2. filter
+          contracts = contracts.filter((contract) => matches(contract, searchTerm));
+          const total = contracts.length;
 
-    // 3. paginate
-    contracts = contracts.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({ contracts, total });
+          // 3. paginate
+          contracts = contracts.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+
+          observer.next({ contracts, total });
+        },
+        error: (error) => observer.error(error),
+        complete: () => observer.complete(),
+      });
+    });
+  }
+
+  public getContracts(): Observable<Contract[]> {
+    return this.http.get<Contract[]>(FINANCIAL_API + '/contracts');
   }
 
   public getContract(id: number): Observable<Contract | undefined> {
-    return of(CONTRACTS.find((contract) => contract.id === id));
+    return this.http.get<Contract>(FINANCIAL_API + '/contracts/' + id);
   }
 
   public create(contract: Contract): Observable<Contract> {
-    contract.id = CONTRACTS.length + 1;
-    CONTRACTS.push(contract);
-    return of(contract);
+    return this.http.post<Contract>(FINANCIAL_API + '/contracts', contract);
   }
 
   public update(contract: Contract): Observable<Contract> {
-    const index = CONTRACTS.findIndex((p) => p.id === contract.id);
-    CONTRACTS[index] = contract;
-    return of(contract);
+    return this.http.put<Contract>(FINANCIAL_API + '/contracts/' + contract.id, contract);
   }
 }

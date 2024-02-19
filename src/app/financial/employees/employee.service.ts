@@ -1,9 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, debounceTime, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, debounceTime, switchMap, tap } from 'rxjs';
 
+import { FINANCIAL_API } from '../../shared/api';
 import { Employee } from './employee';
 import { SortColumn, SortDirection } from './employee-sortable-header.directive';
-import { EMPLOYEES } from './employees';
 
 interface SearchResult {
   employees: Employee[];
@@ -57,13 +58,12 @@ export class EmployeeService {
     sortDirection: '',
   };
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this._search$
       .pipe(
         tap(() => this._loading$.next(true)),
         debounceTime(200),
         switchMap(() => this._search()),
-        // delay(200),
         tap(() => this._loading$.next(false)),
       )
       .subscribe((result) => {
@@ -115,37 +115,42 @@ export class EmployeeService {
   }
 
   private _search(): Observable<SearchResult> {
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
+    return new Observable<SearchResult>((observer) => {
+      this.http.get<Employee[]>(FINANCIAL_API + '/employees').subscribe({
+        next: (data) => {
+          const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
-    // 1. sort
-    let employees = sort(EMPLOYEES, sortColumn, sortDirection);
+          // 1. sort
+          let employees = sort(data, sortColumn, sortDirection);
 
-    // 2. filter
-    employees = employees.filter((employee) => matches(employee, searchTerm));
-    const total = employees.length;
+          // 2. filter
+          employees = employees.filter((employee) => matches(employee, searchTerm));
+          const total = employees.length;
 
-    // 3. paginate
-    employees = employees.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({ employees, total });
+          // 3. paginate
+          employees = employees.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+
+          observer.next({ employees, total });
+        },
+        error: (error) => observer.error(error),
+        complete: () => observer.complete(),
+      });
+    });
   }
 
   public getEmployees(): Observable<Employee[]> {
-    return of(EMPLOYEES);
+    return this.http.get<Employee[]>(FINANCIAL_API + '/employees');
   }
 
   public getEmployee(id: number): Observable<Employee | undefined> {
-    return of(EMPLOYEES.find((employee) => employee.id === id));
+    return this.http.get<Employee>(FINANCIAL_API + '/employees/' + id);
   }
 
   public create(employee: Employee): Observable<Employee> {
-    employee.id = EMPLOYEES.length + 1;
-    EMPLOYEES.push(employee);
-    return of(employee);
+    return this.http.post<Employee>(FINANCIAL_API + '/employees', employee);
   }
 
   public update(employee: Employee): Observable<Employee> {
-    const index = EMPLOYEES.findIndex((e) => e.id === employee.id);
-    EMPLOYEES[index] = employee;
-    return of(employee);
+    return this.http.put<Employee>(FINANCIAL_API + '/employees/' + employee.id, employee);
   }
 }

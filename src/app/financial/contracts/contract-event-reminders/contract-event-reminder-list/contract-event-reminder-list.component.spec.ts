@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContractEventListComponent } from './contract-event-list.component';
+import { ContractEventListComponent } from './contract-event-reminder-list.component';
 
 describe('ContractEventListComponent', () => {
   let component: ContractEventListComponent;
