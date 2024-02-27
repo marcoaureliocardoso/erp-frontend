@@ -2,7 +2,7 @@ import { Contract } from '../contract';
 
 export interface ContractEventNote {
   id: number;
-  note: string;
+  content: string;
 }
 export interface ContractEventReminder {
   id: number;
