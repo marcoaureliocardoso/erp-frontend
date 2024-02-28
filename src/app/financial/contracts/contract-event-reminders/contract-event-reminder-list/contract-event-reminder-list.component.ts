@@ -2,12 +2,12 @@ import { AsyncPipe, DatePipe, NgClass } from '@angular/common';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgbHighlight, NgbPaginationModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+import { NgbHighlight, NgbModal, NgbModalRef, NgbPaginationModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { Observable, pipe } from 'rxjs';
 
 import { ContractEventReminder } from '../contract-event-reminder';
-import { ContractEventReminderService } from '../contract-event-reminder.service';
 import { ContractEventReminderSortableHeaderDirective, SortEvent } from '../contract-event-reminder-sortable-header.directive';
+import { ContractEventReminderService } from '../contract-event-reminder.service';
 
 @Component({
   selector: 'app-event-list',
@@ -25,7 +25,11 @@ export class ContractEventListComponent implements OnInit {
 
   public today: Date = new Date(new Date().toDateString());
 
-  constructor(public service: ContractEventReminderService) {
+  private modal!: NgbModalRef;
+  public currentNoteContent: string = '';
+  private currentContractEventReminder!: ContractEventReminder;
+
+  constructor(public service: ContractEventReminderService, public modalService: NgbModal) {
     this.contractEventReminders$ = service.contractEventReminders$;
     this.total$ = service.total$;
   }
@@ -79,5 +83,33 @@ export class ContractEventListComponent implements OnInit {
       default:
         return type;
     }
+  }
+
+  public open(content: any, contractEventReminder: ContractEventReminder) {
+    if (contractEventReminder.note === null) {
+      contractEventReminder.note = { id: contractEventReminder.id, content: '' };
+    }
+
+    this.currentNoteContent = contractEventReminder.note.content;
+
+    this.currentContractEventReminder = contractEventReminder;
+
+    this.modal = this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  }
+
+  public noteChange(textArea: EventTarget | null) {
+    this.currentNoteContent = (<HTMLTextAreaElement>textArea!).value;
+  }
+
+  public close() {
+    if (this.currentNoteContent !== this.currentContractEventReminder.note.content) {
+      this.service.updateNoteContent(this.currentContractEventReminder, this.currentNoteContent).subscribe(
+        pipe(() => {
+          this.service.refresh();
+        })
+      );
+    }
+
+    this.modal.dismiss('Close click');
   }
 }

@@ -149,4 +149,13 @@ export class ContractEventReminderService {
       });
     });
   }
+
+  public updateNoteContent(contractEventReminder: ContractEventReminder, noteContent: string): Observable<ContractEventReminder> {
+    contractEventReminder.note.content = noteContent;
+    return this.http.put<ContractEventReminder>(FINANCIAL_API + '/contract-event-reminders/' + contractEventReminder.id + '/note', contractEventReminder);
+  }
+
+  public refresh() {
+    this._search$.next();
+  }
 }

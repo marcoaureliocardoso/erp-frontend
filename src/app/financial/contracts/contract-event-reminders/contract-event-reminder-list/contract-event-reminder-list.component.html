@@ -46,7 +46,7 @@
           </td>
           <td class="d-flex justify-content-center py-1 align-middle">
             <span class="d-inline-flex">
-              <button type="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Anotações"><i class="bi bi-journal-text"></i></button>
+              <button type="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Anotações" (click)="open(content, contractEventReminder)"><i class="bi bi-journal-text"></i></button>
             </span>
           </td>
         </tr>
@@ -69,3 +69,16 @@
     </select>
   </div>
 </form>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Anotações</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <textarea class="form-control" rows="10" [value]="currentNoteContent" (change)="noteChange($event.target)" #modalTextArea></textarea>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Atualizar</button>
+  </div>
+</ng-template>
