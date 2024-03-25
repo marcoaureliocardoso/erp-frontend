@@ -1,0 +1,83 @@
+@if (bond) {
+  <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+    <ol class="breadcrumb border-top border-bottom bg-light ps-1">
+      <li class="breadcrumb-item"><a routerLink="">Início</a></li>
+      <li class="breadcrumb-item">Financeiro</li>
+      <li class="breadcrumb-item"><a routerLink="..">Vínculos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ bond.employee.givenName }} {{ bond.employee.surname }}</li>
+    </ol>
+  </nav>
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-xxl-8">
+      <h4>Vínculo: {{ bond.project.name }} - {{ bond.employee.givenName }} {{ bond.employee.surname }}</h4>
+
+      <div class="card mb-3">
+        <div class="card-header" data-bs-toggle="collapse" href="#bondPersonalDataContent" role="button" aria-expanded="true" aria-controls="bondPersonalDataContent">
+          <h4 class="mb-0">Dados do Colaborador</h4>
+        </div>
+        <div class="collapse show" id="bondPersonalDataContent">
+          <div class="card-body">
+            <div class="mb-2 row">
+              <div class="col-sm-4 col-lg-3"><strong>Nome:</strong></div>
+              <div class="col-sm-8 col-lg-9">{{ bond.employee.givenName }} {{ bond.employee.surname }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header" data-bs-toggle="collapse" href="#bondDataContent" role="button" aria-expanded="true" aria-controls="bondDataContent">
+          <h4 class="mb-0">Dados do Vínculo</h4>
+        </div>
+        <div class="collapse show" id="bondDataContent">
+          <div class="card-body">
+            <div class="mb-2 row">
+              <div class="col-sm-4 col-lg-3"><strong>Função:</strong></div>
+              <div class="col-sm-8 col-lg-9">{{ bond.role }}</div>
+            </div>
+            <div class="mb-2 row">
+              <div class="col-sm-4 col-lg-3"><strong>Tipo:</strong></div>
+              <div class="col-sm-8 col-lg-9">{{ bondTypeLabels[bond.type] }}</div>
+            </div>
+            <div class="mb-2 row">
+              <div class="col-sm-4 col-lg-3"><strong>Projeto:</strong></div>
+              <div class="col-sm-8 col-lg-9">{{ bond.project.name }}</div>
+            </div>
+            <div class="mb-2 row">
+              <div class="col-sm-4 col-lg-3"><strong>Fomentador:</strong></div>
+              <div class="col-sm-8 col-lg-9">{{ bond.project.grantor.name }}</div>
+            </div>
+            <div class="mb-2 row">
+              <div class="col-sm-4 col-lg-3"><strong>Curso:</strong></div>
+              <div class="col-sm-8 col-lg-9">{{ bond.course.name }}</div>
+            </div>
+            <div class="mb-2 row">
+              <div class="col-sm-4 col-lg-3"><strong>Início do Contrato:</strong></div>
+              <div class="col-sm-8 col-lg-9">{{ bond.startDate | date: "dd/MM/yyy" }}</div>
+            </div>
+            <div class="mb-2 row">
+              <div class="col-sm-4 col-lg-3"><strong>Término do Contrato:</strong></div>
+              <div class="col-sm-8 col-lg-9">{{ bond.endDate | date: "dd/MM/yyy" }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a routerLink=".." class="btn btn-secondary me-2">Lista de Vínculos</a>
+      <a routerLink="editar" class="btn btn-primary">Editar</a>
+      <br /><br />
+    </div>
+  </div>
+} @else {
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-xxl-8">
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">Erro!</h4>
+        <p>Este Vínculo não existe.</p>
+        <hr />
+        <p class="mb-0">Por favor, verifique o endereço digitado e tente novamente.</p>
+      </div>
+    </div>
+  </div>
+  <a routerLink=".." class="btn btn-secondary">Lista de Vínculos</a>
+}

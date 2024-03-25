@@ -4,4 +4,4 @@ const API_VERSION: string = 'v1';
 
 export const API_URL: string = `${API_SERVER}/api/${API_VERSION}`;
 
-export const FINANCIAL_API: string = `${API_URL}/financial`;
+export const API_FINANCIAL_FEST: string = `${API_URL}/financial/fest`;

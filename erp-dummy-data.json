@@ -14,7 +14,7 @@
           "number": "4567890"
         }
       ],
-      "contracts": [
+      "bonds": [
         {
           "id": 1,
           "projectId": 1,
@@ -65,7 +65,7 @@
           "number": "6543210"
         }
       ],
-      "contracts": [
+      "bonds": [
         {
           "id": 3,
           "projectId": 1,
@@ -98,7 +98,7 @@
       "birthDate": "1995-12-31",
       "email": "jack.black@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 4,
@@ -108,7 +108,7 @@
       "birthDate": "1993-06-30",
       "email": "jill.white@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 5,
@@ -118,7 +118,7 @@
       "birthDate": "1991-03-15",
       "email": "jim.green@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 6,
@@ -128,7 +128,7 @@
       "birthDate": "1994-09-15",
       "email": "jenny.brown@exxample.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 7,
@@ -138,7 +138,7 @@
       "birthDate": "1992-07-31",
       "email": "joe.grey@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 8,
@@ -148,7 +148,7 @@
       "birthDate": "1996-11-30",
       "email": "jessica.blue@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 9,
@@ -158,7 +158,7 @@
       "birthDate": "1997-02-28",
       "email": "james.red@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 10,
@@ -168,7 +168,7 @@
       "birthDate": "1998-10-31",
       "email": "julia.purple@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 11,
@@ -178,7 +178,7 @@
       "birthDate": "1999-04-30",
       "email": "jason.yellow@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 12,
@@ -188,7 +188,7 @@
       "birthDate": "2000-08-31",
       "email": "jasmine.orange@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 13,
@@ -198,7 +198,7 @@
       "birthDate": "2001-01-31",
       "email": "justin.cyan@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 14,
@@ -208,7 +208,7 @@
       "birthDate": "2002-05-31",
       "email": "jade.magenta@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 15,
@@ -218,10 +218,10 @@
       "birthDate": "2003-09-30",
       "email": "jasper.violet@example.net",
       "phones": [],
-      "contracts": []
+      "bonds": []
     }
   ],
-  "contracts": [
+  "bonds": [
     {
       "id": 1,
       "projectId": 1,
@@ -319,7 +319,7 @@
         "name": "Project A",
         "startDate": "2023-01-01",
         "endDate": "2023-12-31",
-        "contracts": [
+        "bonds": [
           {
             "id": 1,
             "employeeId": 1,
@@ -353,7 +353,7 @@
       "course": {
         "id": 25,
         "name": "Course B",
-        "contracts": []
+        "bonds": []
       },
       "employee": {
         "id": 3,
@@ -363,7 +363,7 @@
         "birthDate": "1995-12-31",
         "email": "jack.black@example.net",
         "phones": [],
-        "contracts": []
+        "bonds": []
       },
       "startDate": "2023-09-08T03:00:00.000Z",
       "endDate": "2023-09-30T03:00:00.000Z",
@@ -379,7 +379,7 @@
       "name": "Project A",
       "startDate": "2023-01-01",
       "endDate": "2023-12-31",
-      "contracts": [
+      "bonds": [
         {
           "id": 1,
           "employeeId": 1,
@@ -416,7 +416,7 @@
       "name": "Project B",
       "startDate": "2023-02-01",
       "endDate": "2023-11-30",
-      "contracts": [
+      "bonds": [
         {
           "id": 2,
           "employeeId": 1,
@@ -440,7 +440,7 @@
     {
       "id": 1,
       "name": "Course X",
-      "contracts": [
+      "bonds": [
         {
           "id": 1,
           "employeeId": 1
@@ -454,7 +454,7 @@
     {
       "id": 2,
       "name": "Course Y",
-      "contracts": [
+      "bonds": [
         {
           "id": 2,
           "employeeId": 2
@@ -468,123 +468,123 @@
     {
       "id": 3,
       "name": "Course Z",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 4,
       "name": "Course W",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 5,
       "name": "Course V",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 6,
       "name": "Course U",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 7,
       "name": "Course T",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 8,
       "name": "Course S",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 9,
       "name": "Course R",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 10,
       "name": "Course Q",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 11,
       "name": "Course P",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 12,
       "name": "Course O",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 13,
       "name": "Course N",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 14,
       "name": "Course M",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 15,
       "name": "Course L",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 16,
       "name": "Course K",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 17,
       "name": "Course J",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 18,
       "name": "Course I",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 19,
       "name": "Course H",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 20,
       "name": "Course G",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 21,
       "name": "Course F",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 22,
       "name": "Course E",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 23,
       "name": "Course D",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 24,
       "name": "Course C",
-      "contracts": []
+      "bonds": []
     },
     {
       "id": 25,
       "name": "Course B",
-      "contracts": []
+      "bonds": []
     }
   ],
   "reports": [
     {
       "id": 1,
-      "contractId": 1,
+      "bondId": 1,
       "deliveryDate": "2023-08-15",
       "description": "Report for Project A"
     }
@@ -592,7 +592,7 @@
   "recesses": [
     {
       "id": 1,
-      "contractId": 1,
+      "bondId": 1,
       "startDate": "2023-07-01",
       "endDate": "2023-07-15"
     }
