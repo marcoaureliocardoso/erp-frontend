@@ -25,6 +25,11 @@
         </div>
       </div>
 
+      <a routerLink=".." class="btn btn-secondary me-2">Lista de Vínculos</a>
+      <a routerLink="../../colaboradores/{{ bond.employee.id }}" class="btn btn-primary me-2">Ver Colaborador</a>
+      <a routerLink="../../colaboradores/{{ bond.employee.id }}/editar" class="btn btn-primary">Editar Colaborador</a>
+      <br /><br />
+
       <div class="card mb-3">
         <div class="card-header" data-bs-toggle="collapse" href="#bondDataContent" role="button" aria-expanded="true" aria-controls="bondDataContent">
           <h4 class="mb-0">Dados do Vínculo</h4>
@@ -64,7 +69,49 @@
       </div>
 
       <a routerLink=".." class="btn btn-secondary me-2">Lista de Vínculos</a>
-      <a routerLink="editar" class="btn btn-primary">Editar</a>
+      <a routerLink="editar" class="btn btn-primary">Editar Vínculo</a>
+      <br /><br />
+
+      <div class="card mb-3">
+        <div class="card-header" data-bs-toggle="collapse" href="#termsDataContent" role="button" aria-expanded="true" aria-controls="termsDataContent">
+          <h4 class="mb-0">Termos do Vínculo</h4>
+        </div>
+        <div class="collapse show" id="termsDataContent">
+          <div class="card-body">
+            <div class="mb-2 row">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Caminho</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (term of bond.terms; track term.id) {
+                    <tr>
+                      <td>{{ termTypeLabels[term.type] }}</td>
+                      <td><a href="file:///{{ term.path }}" target="_blank">{{ term.path }}</a></td>
+                      <td>
+                        <!-- <a role="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Ver Termo" routerLink="/financeiro/fest/vinculos/{{ bond.id }}/termos/{{ term.id }}"><i class="bi bi-eye-fill"></i></a> -->
+                        <a role="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Editar Termo" routerLink="/financeiro/fest/vinculos/{{ bond.id }}/termos/{{ term.id }}/editar"><i class="bi bi-pencil-fill"></i></a>
+                        <button type="button" class="btn btn-sm btn-danger me-1" ngbTooltip="Excluir Termo"><i class="bi bi-trash-fill"></i></button>
+                      </td>
+                    </tr>
+                  }
+                  @empty {
+                    <tr>
+                      <td colspan="3" style="text-align: center">Nenhum Termo Encontrado</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a routerLink=".." class="btn btn-secondary me-2">Lista de Vínculos</a>
+      <a routerLink="termos/novo" class="btn btn-primary disabled">Adicionar Termo</a>
       <br /><br />
     </div>
   </div>

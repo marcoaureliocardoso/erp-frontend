@@ -55,6 +55,8 @@ function sort(bonds: Bond[], column: SortColumn, direction: string): Bond[] {
           const res = compare(a.employee.surname, b.employee.surname);
           return direction === 'asc' ? res : -res;
         });
+      case 'terms':
+        return bonds;
       default:
         return [...bonds].sort((a, b) => {
           const res = compare(a[column], b[column]);

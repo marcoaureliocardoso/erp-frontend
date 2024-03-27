@@ -2,6 +2,7 @@ import { Course } from '../courses/course';
 import { Employee } from '../employees/employee';
 import { Project } from '../projects/project';
 import { BondType } from './bondType';
+import { Term } from './terms/term';
 
 export interface Bond {
   id: number;
@@ -10,6 +11,7 @@ export interface Bond {
   project: Project;
   course: Course;
   employee: Employee;
+  terms: Term[];
   startDate: Date;
   endDate: Date;
   informDeadlineOfFirstRecess: Date;

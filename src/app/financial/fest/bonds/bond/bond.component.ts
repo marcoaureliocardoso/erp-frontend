@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Bond } from '../bond';
 import { BondService } from '../bond.service';
 import { BondTypeLabels } from '../bondType';
+import { TermTypeLabels } from '../terms/termType';
 
 @Component({
   selector: 'app-bond',
@@ -17,6 +18,7 @@ export class BondComponent implements OnInit {
   public bond: Bond | null = null;
 
   public bondTypeLabels = BondTypeLabels;
+  public termTypeLabels = TermTypeLabels;
 
   constructor(
     private route: ActivatedRoute,
