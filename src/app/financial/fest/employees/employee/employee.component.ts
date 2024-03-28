@@ -4,13 +4,15 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { CpfFormatPipe } from '../../../../shared/cpf-format.pipe';
 import { EducationLabels } from '../../../../shared/education';
+import { ShortPipe } from '../../../../shared/short.pipe';
+import { BondTypeLabels } from '../../bonds/bondType';
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-employee',
   standalone: true,
-  imports: [RouterModule, DatePipe, CpfFormatPipe],
+  imports: [RouterModule, DatePipe, CpfFormatPipe, ShortPipe],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css',
 })
@@ -19,6 +21,7 @@ export class EmployeeComponent implements OnInit {
   public employeeId: number | null = null;
 
   public educationLabels = EducationLabels;
+  public bondTypeLabels = BondTypeLabels;
 
   constructor(
     private route: ActivatedRoute,

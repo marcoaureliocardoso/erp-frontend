@@ -68,7 +68,59 @@
       </div>
 
       <a routerLink=".." class="btn btn-secondary me-2">Lista de Colaboradores</a>
-      <a routerLink="editar" class="btn btn-primary">Editar</a>
+      <a routerLink="editar" class="btn btn-primary">Editar Colaborador</a>
+      <br /><br />
+
+      <div class="card mb-3">
+        <div class="card-header" data-bs-toggle="collapse" href="#bondsDataContent" role="button" aria-expanded="true" aria-controls="bondsDataContent">
+          <h4 class="mb-0">Vínculos</h4>
+        </div>
+        <div class="collapse show" id="bondsDataContent">
+          <div class="card-body">
+            <div class="mb-2 row">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Função</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Projeto</th>
+                    <!-- <th scope="col">Fomentador</th> -->
+                    <th scope="col">Curso</th>
+                    <th scope="col">Início</th>
+                    <th scope="col">Término</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (bond of employee.bonds; track bond.id) {
+                    <tr>
+                      <td>{{ bond.role | shortStr: 15 }}</td>
+                      <td>{{ bondTypeLabels[bond.type] | shortStr: 15 }}</td>
+                      <td>{{ bond.project.name | shortStr: 15 }}</td>
+                      <!-- <td>{{ bond.project.grantor.name | shortStr: 15 }}</td> -->
+                      <td>{{ bond.course.name | shortStr: 15 }}</td>
+                      <td>{{ bond.startDate | date: "dd/MM/yyy" }}</td>
+                      <td>{{ bond.endDate | date: "dd/MM/yyy" }}</td>
+                      <td>
+                        <a role="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Ver Vínculo" routerLink="/financeiro/fest/vinculos/{{ bond.id }}"><i class="bi bi-eye-fill"></i></a>
+                        <a role="button" class="btn btn-sm btn-primary me-1" ngbTooltip="Editar Vínculo" routerLink="/financeiro/fest/vinculos/{{ bond.id }}/editar"><i class="bi bi-pencil-fill"></i></a>
+                        <button type="button" class="btn btn-sm btn-danger" ngbTooltip="Excluir Vínculo"><i class="bi bi-trash-fill"></i></button>
+                      </td>
+                    </tr>
+                  }
+                  @empty {
+                    <tr>
+                      <td colspan="3" style="text-align: center">Nenhum Vínculo Encontrado</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a routerLink=".." class="btn btn-secondary me-2">Lista de Colaboradores</a>
+      <a routerLink="vinculos/novo" class="btn btn-primary disabled">Novo Vínculo</a>
       <br /><br />
     </div>
   </div>

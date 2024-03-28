@@ -25,10 +25,15 @@ function sort(employees: Employee[], column: SortColumn, direction: string): Emp
   if (direction === '' || column === '') {
     return employees;
   } else {
-    return [...employees].sort((a, b) => {
-      const res = compare(a[column], b[column]);
-      return direction === 'asc' ? res : -res;
-    });
+    switch (column) {
+      case 'bonds':
+        return employees;
+      default:
+        return [...employees].sort((a, b) => {
+          const res = compare(a[column], b[column]);
+          return direction === 'asc' ? res : -res;
+        });
+    }
   }
 }
 
